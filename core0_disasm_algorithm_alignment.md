@@ -133,7 +133,21 @@ b_tile_nk = tl.load(weight_ptr, boundary_check=(0, 1),
 
 `BRx[5] Addr[32768]` 设置 A tile 的片上缓冲基址；`W[127] C[127]` 说明 A tile 为 128×128。`BRx[6]` 是 PE/VP 之间使用的中间 tile descriptor。`0x0600–0x0798` 虽然没有显式的高级指令名，但其位移、掩码、乘法和加法是在计算实际基址、stride、half/BF16 元素地址和 mailbox 参数，并非额外的矩阵算法。
 
-`LD_MOV ... SendMails[PE] RecvMails[PE]` 表示 LD 将 A/权重数据送入 PE，同时等待 PE 侧资源；这对应源代码中的两个 `tl.load`。
+这里需要特别区分“搬入 L2”和“PE 读取 L2”：`0x000007e8` 的
+
+```text
+LD_MOV DDE[1] ARb[28] BRx[5] BRa[6] SendMails[PE] RecvMails[PE]
+```
+
+是 LD 引擎执行的 **外部/全局内存（GDG/DRAM）→ L2 buffer `BRx[5]`** 搬运，`BRa[6]` 提供源地址/源 descriptor，`BRx[5]` 是 A tile 的目标 L2 descriptor。`SendMails[PE]` 表示搬运完成后通知 PE 可以消费，`RecvMails[PE]` 表示发射受 PE 侧同步约束；它不是“L2 → PE 的另一条显式 LD_MOV”。
+
+因此，A 的数据路径应写成：
+
+```text
+全局 A tensor ──LD_MOV(0x7e8)──> L2 BRx[5] ──PE_CONV(0x8b0)读取──> PE
+```
+
+这对应源代码中的 A 的 `tl.load`，而 PE 对 L2 tile 的读取是 `PE_CONV` 的 operand 读取，不需要再生成一条独立的 `LD_MOV`。相关硬件说明中，`LD_MOV` 的普通语义也是“从 Global DRAM 加载 activation 到 L2”；`PE_CONV` 对 `BRa[5]`/`BRb[4]` descriptor 直接消费 L2 tile。
 
 ### 3.6 PE 矩阵乘（`0x07f0–0x08b0`）
 
@@ -151,7 +165,7 @@ b_tile_nk = tl.load(weight_ptr, boundary_check=(0, 1),
 0x08b0 PE_CONV CM[2] BRx[7] BRa[5] BRb[4]
 ```
 
-`BRx[7] Addr[65536]` 配置 PE 输出/中间 tile 的资源，多个 `CT_SETBM_*` 配置 A、权重和结果的形状及步长。`PE_SETM_M` 选择矩阵乘模式和 tile 参数，`PE_SETM_U` 设置 PE 微操作资源，`PE_CONV` 正式发起计算。`BRa[5]` 和 `BRb[4]` 分别对应 A tile 和权重 tile，因此该指令组直接对应：
+`BRx[7] Addr[65536]` 配置 PE 输出/中间 tile 的资源，多个 `CT_SETBM_*` 配置 A、权重和结果的形状及步长。`PE_SETM_M` 选择矩阵乘模式和 tile 参数，`PE_SETM_U` 设置 PE 微操作资源，`PE_CONV` 正式发起计算。`BRa[5]` 和 `BRb[4]` 分别对应已经位于 L2 的 A tile 和权重 tile，因此该指令组直接对应：
 
 ```python
 c_tile = tl.dot(a_tile, tl.trans(b_tile_nk)).to(tl.bfloat16)
@@ -223,7 +237,8 @@ core0 的输出基址和通道偏移对应 N 的前半部分，即逻辑范围 `
 | 计算 `N_per_core`/ceil-div | `0x0098–0x0358` | CT 算术、`CT_JL/JGE/JO`、常量 127/128 |
 | 初始化累加器 | `0x0368–0x0430` | `VP_STSR`、128×128 descriptor |
 | 配置并加载权重 | `0x0438–0x04d0` | `BRx[4]`、`SK/TK[127]`、`PE_MAIL` |
-| 配置并加载 A tile | `0x0518–0x07e8` | `BRx[5] Addr[32768]`、A tile 128×128、`LD_MOV` |
+| A tile 搬入 L2 | `0x0528–0x07e8` | `BRx[5] Addr[32768]`、A tile 128×128、`LD_MOV`（GDG/DRAM→L2） |
+| PE 读取 L2 A/权重 tile | `0x07f0–0x08b0` | `PE_CONV` 的 `BRa[5]`/`BRb[4]` operand |
 | PE dot/matmul | `0x07f0–0x08b0` | `PE_SETM_M`、`PE_SETM_U`、`PE_CONV` |
 | VP 累加 | `0x08b8–0x0918` | `VP_SETM_*`、`VP_DTSR`、同步 mailbox |
 | C tile 写回 | `0x09b8–0x0c58` | 输出 descriptor、`ST_MOV` |
@@ -245,4 +260,3 @@ core0 的输出基址和通道偏移对应 N 的前半部分，即逻辑范围 `
 ## 6. 注意事项
 
 这是针对当前 CASE 的静态反汇编对照，不等同于对所有动态形状的形式证明。特别是当前 `K=128` 只有一个 K tile；若验证 `K>128`，应增加多 K tile CASE，检查 `VP_DTSR` 回跳路径上的 BF16 中间截断和累加顺序。源代码是在每个 K tile 的 dot 结果转成 BF16 后累加，而单 K tile CASE 无法覆盖这一差异。
-
