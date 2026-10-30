@@ -1,3 +1,0 @@
-assign 6 mc_tb.u_quad_group.tAA
-assign 6 mc_tb.u_quad_group.u_quad_group.XBK0.tAA
-

@@ -1,4 +1,0 @@
-run 0
-set dump_fsdb [get trim_tb.dump_fsdb]
-if {$dump_fsdb} {do dump_fsdb.do}
-run
