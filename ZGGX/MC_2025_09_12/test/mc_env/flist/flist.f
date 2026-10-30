@@ -1,0 +1,2 @@
+-f $AUX_DIR/mc_new/test/mc_env/flist/mc_env.flist
+-f $AUX_DIR/mc_new/test/mc_env/flist/mc_rtl.flist

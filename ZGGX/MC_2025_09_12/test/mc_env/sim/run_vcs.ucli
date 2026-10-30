@@ -1,0 +1,8 @@
+run 0
+set dump_fsdb [get mc_tb.dump_fsdb]
+if {$dump_fsdb} {
+    fsdbDumpvars 0  "mc_tb"
+    fsdbDumpon
+}
+alias . run
+run

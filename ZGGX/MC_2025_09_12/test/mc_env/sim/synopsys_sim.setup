@@ -1,0 +1,8 @@
+--VCS MX setup file for ASIC
+--Mapping default work directory
+WORK > DEFAULT
+DEFAULT : work
+work   : work
+uvm_lib: uvm_lib
+tb_lib: tb_lib
+vhd_lib: vhd_lib

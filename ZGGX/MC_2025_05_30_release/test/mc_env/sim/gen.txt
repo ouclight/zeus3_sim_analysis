@@ -1,0 +1,2 @@
+assign 4.5 mc_tb.u_quad_group.tAA
+assign 4.5 mc_tb.u_quad_group.XBK0.tAA

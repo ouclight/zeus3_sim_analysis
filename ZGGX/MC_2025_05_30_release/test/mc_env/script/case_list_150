@@ -1,0 +1,10 @@
+USER_DEFINE=BIST_MODE
+USER_DEFINE=BIST_MODE+NO_INIT
+case_list:
+
+SUITE=zjh       case_num=15        seq=mc_bist_csl_wl_scan_vseq               USER_DEFINE=BIST_MODE+NO_INIT                          UVM_VERBOSITY=UVM_NONE      
+SUITE=hy        case_num=15        seq=mc_bist_vseq                           USER_DEFINE=BIST_MODE+NO_INIT   TIMEOUT=100000000000  UVM_VERBOSITY=UVM_NONE     
+SUITE=hy        case_num=15        seq=mc_bist_vmc_vseq                       USER_DEFINE=BIST_MODE       TIMEOUT=100000000000  UVM_VERBOSITY=UVM_NONE   
+SUITE=hy        case_num=15        seq=mc_bist_rescan_vseq                    USER_DEFINE=BIST_MODE       TIMEOUT=100000000000  UVM_VERBOSITY=UVM_NONE   
+SUITE=zjh       case_num=15        seq=mc_bist_csl_scan_vseq                  USER_DEFINE=BIST_MODE+NO_INIT       TIMEOUT=100000000000  UVM_VERBOSITY=UVM_NONE   
+SUITE=hy        case_num=15        seq=mc_bist_rand_order_csl_wl_vseq         USER_DEFINE=BIST_MODE       TIMEOUT=100000000000  UVM_VERBOSITY=UVM_NONE   

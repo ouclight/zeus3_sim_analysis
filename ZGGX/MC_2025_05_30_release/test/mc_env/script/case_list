@@ -1,0 +1,28 @@
+USER_DEFINE=  
+#USER_DEFINE=NO_INIT
+#USER_DEFINE=DRAM_INIT
+case_list:
+
+SUITE=TMP       case_num=1          seq=mc_dg0_smoke_vseq                       USER_DEFINE=                                UVM_VERBOSITY=UVM_NONE  
+SUITE=TMP       case_num=1          seq=mc_wr_rd_vseq                           USER_DEFINE=                                UVM_VERBOSITY=UVM_NONE
+
+SUITE=zjh       case_num=1          seq=mc_dram_init_vseq                       USER_DEFINE=DRAM_INIT                       UVM_VERBOSITY=UVM_NONE
+SUITE=zjh       case_num=1          seq=mc_wr_rd_vseq                           USER_DEFINE=                                UVM_VERBOSITY=UVM_NONE
+SUITE=zjh       case_num=1          seq=mc_vmc_vseq                             USER_DEFINE=DRAM_INIT                       UVM_VERBOSITY=UVM_NONE
+SUITE=zjh       case_num=1          seq=mc_debug_vseq                           USER_DEFINE=NO_INIT                         UVM_VERBOSITY=UVM_NONE  
+SUITE=zjh       case_num=1          seq=mc_smoke_vseq                           USER_DEFINE=NO_INIT                         UVM_VERBOSITY=UVM_NONE  
+SUITE=zjh       case_num=1          seq=mc_refresh_vseq                         USER_DEFINE=                                UVM_VERBOSITY=UVM_NONE
+SUITE=zjh       case_num=1          seq=mc_refresh_local_dynamic_change_vseq    USER_DEFINE=DRAM_INIT                       UVM_VERBOSITY=UVM_NONE
+SUITE=zjh       case_num=1          seq=mc_refresh_soc_dynamic_change_vseq      USER_DEFINE=DRAM_INIT                       UVM_VERBOSITY=UVM_NONE
+SUITE=zjh       case_num=1          seq=mc_performance_con_vseq                 USER_DEFINE=NO_INIT                         UVM_VERBOSITY=UVM_NONE
+SUITE=zjh       case_num=1          seq=mc_performance_con_wr_vseq              USER_DEFINE=NO_INIT                         UVM_VERBOSITY=UVM_NONE
+#SUITE=zjh       case_num=1          seq=mc_performance_single_vseq              USER_DEFINE=NO_INIT                        UVM_VERBOSITY=UVM_NONE
+SUITE=zjh       case_num=1          seq=mc_array_timing_cfg_vseq                USER_DEFINE=NO_INIT                         UVM_VERBOSITY=UVM_NONE
+SUITE=hy        case_num=1          seq=mc_open_close_page_vseq                 USER_DEFINE=                                UVM_VERBOSITY=UVM_NONE  
+SUITE=hy        case_num=1          seq=mc_clk_vseq                             USER_DEFINE=NO_INIT                         UVM_VERBOSITY=UVM_NONE 
+SUITE=hy        case_num=1          seq=mc_refresh_local_vseq                   USER_DEFINE=NO_INIT                         UVM_VERBOSITY=UVM_NONE
+SUITE=hy        case_num=1          seq=mc_refresh_soc_vseq                     USER_DEFINE=NO_INIT                         UVM_VERBOSITY=UVM_NONE
+SUITE=hy        case_num=1          seq=mc_rstn_chk_vseq                        USER_DEFINE=                                UVM_VERBOSITY=UVM_NONE  
+SUITE=hy        case_num=1          seq=mc_bist_rd_timeout_vseq                 USER_DEFINE=NO_INIT                         UVM_VERBOSITY=UVM_NONE       
+SUITE=hy        case_num=1          seq=mc_initial_rd_timeout_vseq              USER_DEFINE=NO_INIT                         UVM_VERBOSITY=UVM_NONE      
+SUITE=hy        case_num=1          seq=mc_normal_rd_timeout_vseq               USER_DEFINE=NO_INIT                         UVM_VERBOSITY=UVM_NONE   

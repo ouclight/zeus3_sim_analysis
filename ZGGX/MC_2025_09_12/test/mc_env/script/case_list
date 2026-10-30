@@ -1,0 +1,18 @@
+USER_DEFINE=COMMON_MC+TEST_1_SHOT_2
+USER_DEFINE=COMMON_MC+TEST_1_SHOT_2+NO_INIT
+USER_DEFINE=COMMON_MC+TEST_1_SHOT_2+DRAM_INIT
+USER_DEFINE=COMMON_MC+TEST_1_SHOT_2+BIST_SIM+NO_INIT
+USER_DEFINE=COMMON_MC+TEST_1_SHOT_2+CHKBIT+NO_INIT
+USER_DEFINE=COMMON_MC+TEST_1_SHOT_2+NO_INIT+REFRESH_CFG
+
+case_list:
+
+SUITE=all  case_num=1 seq=mc_wr_rd_vseq                                         USER_DEFINE=COMMON_MC+TEST_1_SHOT_2
+SUITE=all  case_num=1 seq=mc_ecc_1bit_vseq                                      USER_DEFINE=COMMON_MC+TEST_1_SHOT_2
+SUITE=all  case_num=1 tc=mc_ecc_nbit_test seq=mc_ecc_nbit_vseq                  USER_DEFINE=COMMON_MC+TEST_1_SHOT_2
+SUITE=all  case_num=1 seq=mc_refresh_vseq                                       USER_DEFINE=COMMON_MC+TEST_1_SHOT_2+NO_INIT
+SUITE=all  case_num=1 seq=mc_performance_rd_vseq                                USER_DEFINE=COMMON_MC+TEST_1_SHOT_2
+SUITE=all  case_num=1 seq=mc_vmc_vseq                                           USER_DEFINE=COMMON_MC+TEST_1_SHOT_2+DRAM_INIT
+SUITE=all  case_num=1 seq=mc_bist_vseq                                          USER_DEFINE=COMMON_MC+TEST_1_SHOT_2+BIST_SIM+NO_INIT   TIMEOUT=100000000000
+SUITE=all  case_num=1 seq=mc_debug_vseq                                         USER_DEFINE=COMMON_MC+TEST_1_SHOT_2+NO_INIT
+

@@ -1,0 +1,2 @@
+-f $ENV_DIR/flist/trim_env.flist
+-f $ENV_DIR/flist/trim_rtl.flist

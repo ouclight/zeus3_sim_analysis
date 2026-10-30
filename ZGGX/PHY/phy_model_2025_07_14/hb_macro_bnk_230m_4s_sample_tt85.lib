@@ -1,0 +1,419 @@
+library(hb_macro_bnk_230m_4s_sample) {
+  technology(TSMC_28nm_HPM);
+  delay_model : table_lookup;
+  time_unit : "1ns";
+  voltage_unit : "1V";
+  current_unit : "1uA";
+  capacitive_load_unit(1.0, ff);
+  default_max_transition : 0.25;
+  nom_process : 1.0;
+  nom_temperature : 85;
+  nom_voltage : 0.9;
+
+  /* Voltage domain definitions */
+  voltage_map(VDD_CORE, 0.9);
+  voltage_map(VDD_ARRAY, 1.1);
+  voltage_map(VSS, 0.0);
+  
+  operating_conditions(TT85_CORE) {
+    process : 1.0;
+    temperature : 85;
+    voltage : 0.9;
+  }
+  operating_conditions(TT85_ARRAY) {
+    process : 1.0;
+    temperature : 85;
+    voltage : 1.1;
+  }
+  default_operating_conditions : TT85_CORE;
+
+cell(hb_macro_bnk_230m_4s_sample) {
+  area : 96000 ;
+  dont_use : true ;
+  dont_touch : true ;
+  interface_timing : true;
+  timing_model_type : "extracted";
+  is_macro_cell : true;
+
+  /*================= Power/Ground Pins =================*/
+  pin(vdd) {
+    direction : inout;
+    is_pad : true;
+    voltage_name : "VDD_CORE";
+    description : "Digital core power (0.9V)";
+  }
+  
+  pin(vdd_array) {
+    direction : inout;
+    is_pad : true;
+    voltage_name : "VDD_ARRAY";
+    description : "PHY array power (1.1V)";
+  }
+  
+  pin(vss) {
+    direction : inout;
+    is_pad : true;
+    voltage_name : "VSS";
+    description : "Ground reference";
+  }
+
+  /*================= Digital Core Inputs (0.9V) =================*/
+  pin(clk_in_asic) {
+    direction : input;
+    clock : true;
+    capacitance : 0.016;
+    voltage : VDD_CORE;
+    description : "Main clock input from digital logic";
+    
+    /* Clock constraints */
+    timing() {
+      timing_type : setup_rising;
+      related_pin : "bnksel_n_asic_0";
+      rise_constraint(values) { values("0.11"); }
+    }
+    timing() {
+      timing_type : hold_rising;
+      related_pin : "bnksel_n_asic_0";
+      rise_constraint(values) { values("0.06"); }
+    }
+  }
+
+  pin(bnksel_n_asic_0) {
+    direction : input;
+    capacitance : 0.015;
+    voltage : VDD_CORE;
+    description : "Bank select control 0 from digital logic";
+  }
+  
+  pin(bnksel_n_asic_1) {
+    direction : input;
+    capacitance : 0.015;
+    voltage : VDD_CORE;
+    description : "Bank select control 1 from digital logic";
+  }
+  
+  pin(gcas_rd_en_asic_0) {
+    direction : input;
+    capacitance : 0.015;
+    voltage : VDD_CORE;
+    description : "Global CAS read enable 0 from digital logic";
+  }
+  
+  pin(gcas_rd_en_asic_1) {
+    direction : input;
+    capacitance : 0.015;
+    voltage : VDD_CORE;
+    description : "Global CAS read enable 1 from digital logic";
+  }
+  
+  pin(gcas_wr_en_asic_0) {
+    direction : input;
+    capacitance : 0.015;
+    voltage : VDD_CORE;
+    description : "Global CAS write enable 0 from digital logic";
+  }
+  
+  pin(gcas_wr_en_asic_1) {
+    direction : input;
+    capacitance : 0.015;
+    voltage : VDD_CORE;
+    description : "Global CAS write enable 1 from digital logic";
+  }
+  
+  pin(ls_en_asic) {
+    direction : input;
+    capacitance : 0.015;
+    voltage : VDD_CORE;
+    description : "Latency shift enable from digital logic";
+  }
+  
+  pin(reset_n_asic) {
+    direction : input;
+    capacitance : 0.015;
+    voltage : VDD_CORE;
+    description : "Active-low reset from digital logic";
+  }
+  
+  pin(wdata_oe_asic) {
+    direction : input;
+    capacitance : 0.015;
+    voltage : VDD_CORE;
+    description : "Write data output enable from digital logic";
+  }
+
+  /*================= Array Domain Inputs (1.1V) =================*/
+  pin(rdrdy_n_array_0) {
+    direction : input;
+    capacitance : 0.018;
+    voltage : VDD_ARRAY;
+    description : "Ready signal from DRAM array 0";
+  }
+  
+  pin(rdrdy_n_array_1) {
+    direction : input;
+    capacitance : 0.018;
+    voltage : VDD_ARRAY;
+    description : "Ready signal from DRAM array 1";
+  }
+
+  /*================= Configuration Inputs (0.9V) =================*/
+  pin(cfg_dly_gcas_rd_0) {
+    direction : input;
+    capacitance : 0.017;
+    voltage : VDD_CORE;
+    description : "CAS read delay config for channel 0";
+  }
+  
+  pin(cfg_dly_gcas_wr_0) {
+    direction : input;
+    capacitance : 0.017;
+    voltage : VDD_CORE;
+    description : "CAS write delay config for channel 0";
+  }
+  
+  pin(cfg_dly_bnksel_n_1) {
+    direction : input;
+    capacitance : 0.017;
+    voltage : VDD_CORE;
+    description : "Bank select delay config for channel 1";
+  }
+  
+  pin(cfg_dly_bnksel_n_0) {
+    direction : input;
+    capacitance : 0.017;
+    voltage : VDD_CORE;
+    description : "Bank select delay config for channel 0";
+  }
+  
+  pin(cfg_dly_gcas_rd_1) {
+    direction : input;
+    capacitance : 0.017;
+    voltage : VDD_CORE;
+    description : "CAS read delay config for channel 1";
+  }
+  
+  pin(cfg_dly_gcas_wr_1) {
+    direction : input;
+    capacitance : 0.017;
+    voltage : VDD_CORE;
+    description : "CAS write delay config for channel 1";
+  }
+  
+  pin(cfg_dly_gcadd) {
+    direction : input;
+    capacitance : 0.017;
+    voltage : VDD_CORE;
+    description : "Column address delay configuration";
+  }
+
+  /*================= Data/Address Inputs (0.9V) =================*/
+  pin(gradd_asic) {
+    direction : input;
+    capacitance : 0.018;
+    voltage : VDD_CORE;
+    description : "Row address from digital logic";
+  }
+  
+  pin(gcadd_asic) {
+    direction : input;
+    capacitance : 0.018;
+    voltage : VDD_CORE;
+    description : "Column address from digital logic";
+  }
+  
+  pin(wdata_asic) {
+    direction : input;
+    capacitance : 0.035;
+    voltage : VDD_CORE;
+    description : "Write data from digital logic";
+  }
+
+  /*================= Core Domain Outputs (0.9V) =================*/
+  pin(rdrdy_n_asic) {
+    direction : output;
+    clock : true;
+    max_capacitance : 0.3;
+    voltage : VDD_CORE;
+    description : "Ready clock to digital logic";
+    
+    /* Level-shifted clock path */
+    timing() {
+      related_pin : "rdrdy_n_array_0";
+      timing_type : combinational;
+      cell_rise(delay_template_3x3) {
+        index_1 ("0.05, 0.1, 0.2");
+        index_2 ("0.05, 0.15, 0.3");
+        values( \
+          "0.32, 0.36, 0.45", \
+          "0.35, 0.40, 0.50", \
+          "0.40, 0.46, 0.58" \
+        );
+      }
+      rise_transition(delay_template_3x3) {
+        values( \
+          "0.10, 0.14, 0.20", \
+          "0.12, 0.16, 0.23", \
+          "0.15, 0.20, 0.28" \
+        );
+      }
+    }
+  }
+
+  pin(rdata_asic) {
+    direction : output;
+    capacitance : 0.035;
+    voltage : VDD_CORE;
+    description : "Read data to digital logic";
+    
+    timing() {
+      related_pin : "rdrdy_n_array_0";
+      timing_type : combinational;
+      intrinsic_rise : 0.40;
+      intrinsic_fall : 0.43;
+    }
+  }
+
+  /*================= Array Domain Outputs (1.1V) =================*/
+  pin(bnksel_n_array_0) {
+    direction : output;
+    max_capacitance : 0.4;
+    voltage : VDD_ARRAY;
+    description : "Bank select to DRAM array 0";
+  }
+
+  pin(bnksel_n_array_1) {
+    direction : output;
+    max_capacitance : 0.4;
+    voltage : VDD_ARRAY;
+    description : "Bank select to DRAM array 1";
+  }
+
+  pin(gcas_rd_array_0) {
+    direction : output;
+    max_capacitance : 0.3;
+    voltage : VDD_ARRAY;
+    description : "CAS read to DRAM array 0";
+  }
+
+  pin(gcas_rd_array_1) {
+    direction : output;
+    max_capacitance : 0.3;
+    voltage : VDD_ARRAY;
+    description : "CAS read to DRAM array 1";
+  }
+
+  pin(gcas_wr_array_0) {
+    direction : output;
+    max_capacitance : 0.3;
+    voltage : VDD_ARRAY;
+    description : "CAS write to DRAM array 0";
+  }
+
+  pin(gcas_wr_array_1) {
+    direction : output;
+    max_capacitance : 0.3;
+    voltage : VDD_ARRAY;
+    description : "CAS write to DRAM array 1";
+  }
+
+  pin(reset_n_array) {
+    direction : output;
+    max_capacitance : 0.35;
+    voltage : VDD_ARRAY;
+    description : "Reset to DRAM array";
+    
+    timing() {
+      related_pin : "reset_n_asic";
+      timing_type : combinational;
+      intrinsic_rise : 0.22;
+      intrinsic_fall : 0.25;
+    }
+  }
+
+  pin(gcadd_array) {
+    direction : output;
+    max_capacitance : 0.25;
+    voltage : VDD_ARRAY;
+    description : "Column address to DRAM";
+  }
+
+  pin(gradd_array) {
+    direction : output;
+    max_capacitance : 0.28;
+    voltage : VDD_ARRAY;
+    description : "Row address to DRAM";
+    
+    timing() {
+      related_pin : "gradd_asic";
+      timing_type : combinational;
+      intrinsic_rise : 0.30;
+      intrinsic_fall : 0.33;
+    }
+  }
+
+  /*================= Bidirectional Data Bus (1.1V) =================*/
+  pin(rwdl_array) {
+    direction : inout;
+    capacitance : 0.04;
+    voltage : VDD_ARRAY;
+    description : "Bidirectional data bus to DRAM";
+    three_state : "!wdata_oe_asic";
+    
+    /* Write path (core to array) */
+    timing() {
+      related_pin : "wdata_asic";
+      timing_type : combinational;
+      intrinsic_rise : 0.42;
+      intrinsic_fall : 0.45;
+    }
+    
+    /* Read path (array to core) */
+    timing() {
+      related_pin : "rwdl_array";
+      timing_type : combinational;
+      sdf_cond : "wdata_oe_asic == 1'b0";
+      related_output : "rdata_asic";
+      intrinsic_rise : 0.38;
+      intrinsic_fall : 0.41;
+    }
+    
+    /* Tri-state control */
+    timing() {
+      related_pin : "wdata_oe_asic";
+      timing_type : three_state_enable;
+      intrinsic_rise : 0.35;
+    }
+    timing() {
+      related_pin : "wdata_oe_asic";
+      timing_type : three_state_disable;
+      intrinsic_fall : 0.32;
+    }
+  }
+
+  /*================= Power Models =================*/
+  leakage_power() {
+    value : 0.035;  /* 35uW */
+  }
+  
+  internal_power() {
+    related_pin : "clk_in_asic";
+    rise_power(energy_template_3x3) {
+      index_1 ("0.05, 0.1, 0.2");
+      index_2 ("0.1, 0.3, 0.6");
+      values( \
+        "0.018, 0.022, 0.030", \
+        "0.020, 0.025, 0.034", \
+        "0.024, 0.030, 0.040" \
+      );
+    }
+  }
+
+  /*================= Electrical Rules =================*/
+  default_output_pin_cap : 0.018;
+  default_input_pin_cap : 0.015;
+  default_inout_pin_cap : 0.035;
+  default_max_fanout : 24;
+  default_fanout_load : 0.8;
+  default_cell_leakage_power : 0.0005;  /* 0.5nW */
+  }
+}

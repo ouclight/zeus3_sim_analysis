@@ -1,0 +1,1592 @@
+************************************************************************
+* auCdl Netlist:
+* 
+* Library Name:  BJ_IF_TSMCN28_PHY_SCH_V100
+* Top Cell Name: phy_spine_d
+* View Name:     schematic
+* Netlisted on:  Oct 21 13:58:34 2025
+************************************************************************
+
+*.BIPOLAR
+*.RESI = 2000 
+*.RESVAL
+*.CAPVAL
+*.DIOPERI
+*.DIOAREA
+*.EQUATION
+*.SCALE METER
+*.MEGA
+.PARAM
+
+
+
+************************************************************************
+* Library Name: BJ_IF_TSMCN28_PHY_SCH_V100
+* Cell Name:    physpined_INVD2BWP7T30P140
+* View Name:    schematic
+************************************************************************
+
+.SUBCKT physpined_INVD2BWP7T30P140 I VDD VSS ZN
+*.PININFO I:B VDD:B VSS:B ZN:B
+MMM1 ZN I VSS VSS nch_mac l=30n w=200n m=1 nf=1
+MMM1_2 ZN I VSS VSS nch_mac l=30n w=200n m=1 nf=1
+MMM0 ZN I VDD VDD pch_mac l=30n w=220.0n m=1 nf=1
+MMM0_2 ZN I VDD VDD pch_mac l=30n w=220.0n m=1 nf=1
+.ENDS
+
+************************************************************************
+* Library Name: BJ_IF_TSMCN28_PHY_SCH_V100
+* Cell Name:    physpined_Levelshift_1p1
+* View Name:    schematic
+************************************************************************
+
+.SUBCKT physpined_Levelshift_1p1 D DVDD DVSS D_ls VDD VSS
+*.PININFO D:I D_ls:O DVDD:B DVSS:B VDD:B VSS:B
+Xi3 D VDD VSS D_n / physpined_INVD2BWP7T30P140
+MN1 net5 D DVSS DVSS nch_18ud12_mac l=90n w=1.6u m=2 nf=1
+MN2 D_ls D_n DVSS DVSS nch_18ud12_mac l=90n w=1.6u m=2 nf=1
+MP2 net13 net5 DVDD DVDD pch_18ud12_mac l=90n w=1.6u m=2 nf=1
+MP3 net5 D net14 DVDD pch_18ud12_mac l=90n w=1.6u m=2 nf=1
+MP1 net14 D_ls DVDD DVDD pch_18ud12_mac l=90n w=1.6u m=2 nf=1
+MP4 D_ls D_n net13 DVDD pch_18ud12_mac l=90n w=1.6u m=2 nf=1
+.ENDS
+
+************************************************************************
+* Library Name: BJ_IF_TSMCN28_PHY_SCH_V100
+* Cell Name:    physpined_Levelshift_1p1buf
+* View Name:    schematic
+************************************************************************
+
+.SUBCKT physpined_Levelshift_1p1buf DVDD DVSS Din Dout VDD VSS
+*.PININFO Din:I Dout:O DVDD:B DVSS:B VDD:B VSS:B
+MM4 DVDD DVDD DVDD DVDD pch_18ud12_mac l=90n w=1.6u m=6 nf=1
+MM2 Dout D_ls_b DVDD DVDD pch_18ud12_mac l=90n w=1.6u m=10 nf=1
+MM1 D_ls_b D_ls DVDD DVDD pch_18ud12_mac l=90n w=1.6u m=2 nf=1
+XI3 Din DVDD DVSS D_ls VDD VSS / physpined_Levelshift_1p1
+MM5 DVSS DVSS DVSS DVSS nch_18ud12_mac l=90n w=1.6u m=2 nf=1
+MM0 D_ls_b D_ls DVSS DVSS nch_18ud12_mac l=90n w=1.6u m=1 nf=1
+MM3 Dout D_ls_b DVSS DVSS nch_18ud12_mac l=90n w=1.6u m=5 nf=1
+.ENDS
+
+************************************************************************
+* Library Name: BJ_IF_TSMCN28_PHY_SCH_V100
+* Cell Name:    physpined_ND2D2BWP7T30P140
+* View Name:    schematic
+************************************************************************
+
+.SUBCKT physpined_ND2D2BWP7T30P140 A1 A2 VDD VSS ZN
+*.PININFO A1:B A2:B VDD:B VSS:B ZN:B
+MMM4 ZN A1 net10 VSS nch_mac l=30n w=200n m=1 nf=1
+MMM4_2 ZN A1 net10 VSS nch_mac l=30n w=200n m=1 nf=1
+MMM9 net10 A2 VSS VSS nch_mac l=30n w=200n m=1 nf=1
+MMM9_2 net10 A2 VSS VSS nch_mac l=30n w=200n m=1 nf=1
+MMM1 ZN A1 VDD VDD pch_mac l=30n w=210.0n m=1 nf=1
+MMM1_2 ZN A1 VDD VDD pch_mac l=30n w=210.0n m=1 nf=1
+MMM2 ZN A2 VDD VDD pch_mac l=30n w=210.0n m=1 nf=1
+MMM2_2 ZN A2 VDD VDD pch_mac l=30n w=210.0n m=1 nf=1
+.ENDS
+
+************************************************************************
+* Library Name: BJ_IF_TSMCN28_PHY_SCH_V100
+* Cell Name:    physpined_BUFFD4BWP7T30P140
+* View Name:    schematic
+************************************************************************
+
+.SUBCKT physpined_BUFFD4BWP7T30P140 I VDD VSS Z
+*.PININFO I:B VDD:B VSS:B Z:B
+MMM0 Z net9 VSS VSS nch_mac l=30n w=200n m=1 nf=1
+MMM0_2 Z net9 VSS VSS nch_mac l=30n w=200n m=1 nf=1
+MMM0_3 Z net9 VSS VSS nch_mac l=30n w=200n m=1 nf=1
+MMM0_4 Z net9 VSS VSS nch_mac l=30n w=200n m=1 nf=1
+MMM5 net9 I VSS VSS nch_mac l=30n w=200n m=1 nf=1
+MMM5_2 net9 I VSS VSS nch_mac l=30n w=200n m=1 nf=1
+MMM1 Z net9 VDD VDD pch_mac l=30n w=220.0n m=1 nf=1
+MMM1_2 Z net9 VDD VDD pch_mac l=30n w=220.0n m=1 nf=1
+MMM1_3 Z net9 VDD VDD pch_mac l=30n w=220.0n m=1 nf=1
+MMM1_4 Z net9 VDD VDD pch_mac l=30n w=220.0n m=1 nf=1
+MMM4 net9 I VDD VDD pch_mac l=30n w=220.0n m=1 nf=1
+MMM4_2 net9 I VDD VDD pch_mac l=30n w=220.0n m=1 nf=1
+.ENDS
+
+************************************************************************
+* Library Name: BJ_IF_TSMCN28_PHY_SCH_V100
+* Cell Name:    physpined_BUFFD12BWP7T30P140
+* View Name:    schematic
+************************************************************************
+
+.SUBCKT physpined_BUFFD12BWP7T30P140 I VDD VSS Z
+*.PININFO I:B VDD:B VSS:B Z:B
+MMM0 Z net55 VSS VSS nch_mac l=30n w=200n m=1 nf=1
+MMM0_2 Z net55 VSS VSS nch_mac l=30n w=200n m=1 nf=1
+MMM0_3 Z net55 VSS VSS nch_mac l=30n w=200n m=1 nf=1
+MMM0_4 Z net55 VSS VSS nch_mac l=30n w=200n m=1 nf=1
+MMM0_5 Z net55 VSS VSS nch_mac l=30n w=200n m=1 nf=1
+MMM0_6 Z net55 VSS VSS nch_mac l=30n w=200n m=1 nf=1
+MMM0_7 Z net55 VSS VSS nch_mac l=30n w=200n m=1 nf=1
+MMM0_8 Z net55 VSS VSS nch_mac l=30n w=200n m=1 nf=1
+MMM0_9 Z net55 VSS VSS nch_mac l=30n w=200n m=1 nf=1
+MMM0_10 Z net55 VSS VSS nch_mac l=30n w=200n m=1 nf=1
+MMM0_11 Z net55 VSS VSS nch_mac l=30n w=200n m=1 nf=1
+MMM0_12 Z net55 VSS VSS nch_mac l=30n w=200n m=1 nf=1
+MMM19 net55 I VSS VSS nch_mac l=30n w=200n m=1 nf=1
+MMM19_2 net55 I VSS VSS nch_mac l=30n w=200n m=1 nf=1
+MMM19_3 net55 I VSS VSS nch_mac l=30n w=200n m=1 nf=1
+MMM19_4 net55 I VSS VSS nch_mac l=30n w=200n m=1 nf=1
+MMM21 net55 I VDD VDD pch_mac l=30n w=220.0n m=1 nf=1
+MMM21_2 net55 I VDD VDD pch_mac l=30n w=220.0n m=1 nf=1
+MMM21_3 net55 I VDD VDD pch_mac l=30n w=220.0n m=1 nf=1
+MMM21_4 net55 I VDD VDD pch_mac l=30n w=220.0n m=1 nf=1
+MMM20 Z net55 VDD VDD pch_mac l=30n w=220.0n m=1 nf=1
+MMM20_2 Z net55 VDD VDD pch_mac l=30n w=220.0n m=1 nf=1
+MMM20_3 Z net55 VDD VDD pch_mac l=30n w=220.0n m=1 nf=1
+MMM20_4 Z net55 VDD VDD pch_mac l=30n w=220.0n m=1 nf=1
+MMM20_5 Z net55 VDD VDD pch_mac l=30n w=220.0n m=1 nf=1
+MMM20_6 Z net55 VDD VDD pch_mac l=30n w=220.0n m=1 nf=1
+MMM20_7 Z net55 VDD VDD pch_mac l=30n w=220.0n m=1 nf=1
+MMM20_8 Z net55 VDD VDD pch_mac l=30n w=220.0n m=1 nf=1
+MMM20_9 Z net55 VDD VDD pch_mac l=30n w=220.0n m=1 nf=1
+MMM20_10 Z net55 VDD VDD pch_mac l=30n w=220.0n m=1 nf=1
+MMM20_11 Z net55 VDD VDD pch_mac l=30n w=220.0n m=1 nf=1
+MMM20_12 Z net55 VDD VDD pch_mac l=30n w=220.0n m=1 nf=1
+.ENDS
+
+************************************************************************
+* Library Name: BJ_IF_TSMCN28_PHY_SCH_V100
+* Cell Name:    physpined_BUFFD16BWP7T30P140
+* View Name:    schematic
+************************************************************************
+
+.SUBCKT physpined_BUFFD16BWP7T30P140 I VDD VSS Z
+*.PININFO I:B VDD:B VSS:B Z:B
+MMM0 Z net9 VSS VSS nch_mac l=30n w=200n m=1 nf=1
+MMM0_2 Z net9 VSS VSS nch_mac l=30n w=200n m=1 nf=1
+MMM0_3 Z net9 VSS VSS nch_mac l=30n w=200n m=1 nf=1
+MMM0_4 Z net9 VSS VSS nch_mac l=30n w=200n m=1 nf=1
+MMM0_5 Z net9 VSS VSS nch_mac l=30n w=200n m=1 nf=1
+MMM0_6 Z net9 VSS VSS nch_mac l=30n w=200n m=1 nf=1
+MMM0_7 Z net9 VSS VSS nch_mac l=30n w=200n m=1 nf=1
+MMM0_8 Z net9 VSS VSS nch_mac l=30n w=200n m=1 nf=1
+MMM0_9 Z net9 VSS VSS nch_mac l=30n w=200n m=1 nf=1
+MMM0_10 Z net9 VSS VSS nch_mac l=30n w=200n m=1 nf=1
+MMM0_11 Z net9 VSS VSS nch_mac l=30n w=200n m=1 nf=1
+MMM0_12 Z net9 VSS VSS nch_mac l=30n w=200n m=1 nf=1
+MMM0_13 Z net9 VSS VSS nch_mac l=30n w=200n m=1 nf=1
+MMM0_14 Z net9 VSS VSS nch_mac l=30n w=200n m=1 nf=1
+MMM0_15 Z net9 VSS VSS nch_mac l=30n w=200n m=1 nf=1
+MMM0_16 Z net9 VSS VSS nch_mac l=30n w=200n m=1 nf=1
+MMM5 net9 I VSS VSS nch_mac l=30n w=200n m=1 nf=1
+MMM5_2 net9 I VSS VSS nch_mac l=30n w=200n m=1 nf=1
+MMM5_3 net9 I VSS VSS nch_mac l=30n w=200n m=1 nf=1
+MMM5_4 net9 I VSS VSS nch_mac l=30n w=200n m=1 nf=1
+MMM5_5 net9 I VSS VSS nch_mac l=30n w=200n m=1 nf=1
+MMM1 Z net9 VDD VDD pch_mac l=30n w=220.0n m=1 nf=1
+MMM1_2 Z net9 VDD VDD pch_mac l=30n w=220.0n m=1 nf=1
+MMM1_3 Z net9 VDD VDD pch_mac l=30n w=220.0n m=1 nf=1
+MMM1_4 Z net9 VDD VDD pch_mac l=30n w=220.0n m=1 nf=1
+MMM1_5 Z net9 VDD VDD pch_mac l=30n w=220.0n m=1 nf=1
+MMM1_6 Z net9 VDD VDD pch_mac l=30n w=220.0n m=1 nf=1
+MMM1_7 Z net9 VDD VDD pch_mac l=30n w=220.0n m=1 nf=1
+MMM1_8 Z net9 VDD VDD pch_mac l=30n w=220.0n m=1 nf=1
+MMM1_9 Z net9 VDD VDD pch_mac l=30n w=220.0n m=1 nf=1
+MMM1_10 Z net9 VDD VDD pch_mac l=30n w=220.0n m=1 nf=1
+MMM1_11 Z net9 VDD VDD pch_mac l=30n w=220.0n m=1 nf=1
+MMM1_12 Z net9 VDD VDD pch_mac l=30n w=220.0n m=1 nf=1
+MMM1_13 Z net9 VDD VDD pch_mac l=30n w=220.0n m=1 nf=1
+MMM1_14 Z net9 VDD VDD pch_mac l=30n w=220.0n m=1 nf=1
+MMM1_15 Z net9 VDD VDD pch_mac l=30n w=220.0n m=1 nf=1
+MMM1_16 Z net9 VDD VDD pch_mac l=30n w=220.0n m=1 nf=1
+MMM4 net9 I VDD VDD pch_mac l=30n w=220.0n m=1 nf=1
+MMM4_2 net9 I VDD VDD pch_mac l=30n w=220.0n m=1 nf=1
+MMM4_3 net9 I VDD VDD pch_mac l=30n w=220.0n m=1 nf=1
+MMM4_4 net9 I VDD VDD pch_mac l=30n w=220.0n m=1 nf=1
+MMM4_5 net9 I VDD VDD pch_mac l=30n w=220.0n m=1 nf=1
+.ENDS
+
+************************************************************************
+* Library Name: BJ_IF_TSMCN28_PHY_SCH_V100
+* Cell Name:    phy_spine_d
+* View Name:    schematic
+************************************************************************
+
+.SUBCKT phy_spine_d TSV_TM_204_89[115] TSV_TM_204_89[114] TSV_TM_204_89[113] 
++ TSV_TM_204_89[112] TSV_TM_204_89[111] TSV_TM_204_89[110] TSV_TM_204_89[109] 
++ TSV_TM_204_89[108] TSV_TM_204_89[107] TSV_TM_204_89[106] TSV_TM_204_89[105] 
++ TSV_TM_204_89[104] TSV_TM_204_89[103] TSV_TM_204_89[102] TSV_TM_204_89[101] 
++ TSV_TM_204_89[100] TSV_TM_204_89[99] TSV_TM_204_89[98] TSV_TM_204_89[97] 
++ TSV_TM_204_89[96] TSV_TM_204_89[95] TSV_TM_204_89[94] TSV_TM_204_89[93] 
++ TSV_TM_204_89[92] TSV_TM_204_89[91] TSV_TM_204_89[90] TSV_TM_204_89[89] 
++ TSV_TM_204_89[88] TSV_TM_204_89[87] TSV_TM_204_89[86] TSV_TM_204_89[85] 
++ TSV_TM_204_89[84] TSV_TM_204_89[83] TSV_TM_204_89[82] TSV_TM_204_89[81] 
++ TSV_TM_204_89[80] TSV_TM_204_89[79] TSV_TM_204_89[78] TSV_TM_204_89[77] 
++ TSV_TM_204_89[76] TSV_TM_204_89[75] TSV_TM_204_89[74] TSV_TM_204_89[73] 
++ TSV_TM_204_89[72] TSV_TM_204_89[71] TSV_TM_204_89[70] TSV_TM_204_89[69] 
++ TSV_TM_204_89[68] TSV_TM_204_89[67] TSV_TM_204_89[66] TSV_TM_204_89[65] 
++ TSV_TM_204_89[64] TSV_TM_204_89[63] TSV_TM_204_89[62] TSV_TM_204_89[61] 
++ TSV_TM_204_89[60] TSV_TM_204_89[59] TSV_TM_204_89[58] TSV_TM_204_89[57] 
++ TSV_TM_204_89[56] TSV_TM_204_89[55] TSV_TM_204_89[54] TSV_TM_204_89[53] 
++ TSV_TM_204_89[52] TSV_TM_204_89[51] TSV_TM_204_89[50] TSV_TM_204_89[49] 
++ TSV_TM_204_89[48] TSV_TM_204_89[47] TSV_TM_204_89[46] TSV_TM_204_89[45] 
++ TSV_TM_204_89[44] TSV_TM_204_89[43] TSV_TM_204_89[42] TSV_TM_204_89[41] 
++ TSV_TM_204_89[40] TSV_TM_204_89[39] TSV_TM_204_89[38] TSV_TM_204_89[37] 
++ TSV_TM_204_89[36] TSV_TM_204_89[35] TSV_TM_204_89[34] TSV_TM_204_89[33] 
++ TSV_TM_204_89[32] TSV_TM_204_89[31] TSV_TM_204_89[30] TSV_TM_204_89[29] 
++ TSV_TM_204_89[28] TSV_TM_204_89[27] TSV_TM_204_89[26] TSV_TM_204_89[25] 
++ TSV_TM_204_89[24] TSV_TM_204_89[23] TSV_TM_204_89[22] TSV_TM_204_89[21] 
++ TSV_TM_204_89[20] TSV_TM_204_89[19] TSV_TM_204_89[18] TSV_TM_204_89[17] 
++ TSV_TM_204_89[16] TSV_TM_204_89[15] TSV_TM_204_89[14] TSV_TM_204_89[13] 
++ TSV_TM_204_89[12] TSV_TM_204_89[11] TSV_TM_204_89[10] TSV_TM_204_89[9] 
++ TSV_TM_204_89[8] TSV_TM_204_89[7] TSV_TM_204_89[6] TSV_TM_204_89[5] 
++ TSV_TM_204_89[4] TSV_TM_204_89[3] TSV_TM_204_89[2] TSV_TM_204_89[1] 
++ TSV_TM_204_89[0] TSV_TM_204_89_ASIC[115] TSV_TM_204_89_ASIC[114] 
++ TSV_TM_204_89_ASIC[113] TSV_TM_204_89_ASIC[112] TSV_TM_204_89_ASIC[111] 
++ TSV_TM_204_89_ASIC[110] TSV_TM_204_89_ASIC[109] TSV_TM_204_89_ASIC[108] 
++ TSV_TM_204_89_ASIC[107] TSV_TM_204_89_ASIC[106] TSV_TM_204_89_ASIC[105] 
++ TSV_TM_204_89_ASIC[104] TSV_TM_204_89_ASIC[103] TSV_TM_204_89_ASIC[102] 
++ TSV_TM_204_89_ASIC[101] TSV_TM_204_89_ASIC[100] TSV_TM_204_89_ASIC[99] 
++ TSV_TM_204_89_ASIC[98] TSV_TM_204_89_ASIC[97] TSV_TM_204_89_ASIC[96] 
++ TSV_TM_204_89_ASIC[95] TSV_TM_204_89_ASIC[94] TSV_TM_204_89_ASIC[93] 
++ TSV_TM_204_89_ASIC[92] TSV_TM_204_89_ASIC[91] TSV_TM_204_89_ASIC[90] 
++ TSV_TM_204_89_ASIC[89] TSV_TM_204_89_ASIC[88] TSV_TM_204_89_ASIC[87] 
++ TSV_TM_204_89_ASIC[86] TSV_TM_204_89_ASIC[85] TSV_TM_204_89_ASIC[84] 
++ TSV_TM_204_89_ASIC[83] TSV_TM_204_89_ASIC[82] TSV_TM_204_89_ASIC[81] 
++ TSV_TM_204_89_ASIC[80] TSV_TM_204_89_ASIC[79] TSV_TM_204_89_ASIC[78] 
++ TSV_TM_204_89_ASIC[77] TSV_TM_204_89_ASIC[76] TSV_TM_204_89_ASIC[75] 
++ TSV_TM_204_89_ASIC[74] TSV_TM_204_89_ASIC[73] TSV_TM_204_89_ASIC[72] 
++ TSV_TM_204_89_ASIC[71] TSV_TM_204_89_ASIC[70] TSV_TM_204_89_ASIC[69] 
++ TSV_TM_204_89_ASIC[68] TSV_TM_204_89_ASIC[67] TSV_TM_204_89_ASIC[66] 
++ TSV_TM_204_89_ASIC[65] TSV_TM_204_89_ASIC[64] TSV_TM_204_89_ASIC[63] 
++ TSV_TM_204_89_ASIC[62] TSV_TM_204_89_ASIC[61] TSV_TM_204_89_ASIC[60] 
++ TSV_TM_204_89_ASIC[59] TSV_TM_204_89_ASIC[58] TSV_TM_204_89_ASIC[57] 
++ TSV_TM_204_89_ASIC[56] TSV_TM_204_89_ASIC[55] TSV_TM_204_89_ASIC[54] 
++ TSV_TM_204_89_ASIC[53] TSV_TM_204_89_ASIC[52] TSV_TM_204_89_ASIC[51] 
++ TSV_TM_204_89_ASIC[50] TSV_TM_204_89_ASIC[49] TSV_TM_204_89_ASIC[48] 
++ TSV_TM_204_89_ASIC[47] TSV_TM_204_89_ASIC[46] TSV_TM_204_89_ASIC[45] 
++ TSV_TM_204_89_ASIC[44] TSV_TM_204_89_ASIC[43] TSV_TM_204_89_ASIC[42] 
++ TSV_TM_204_89_ASIC[41] TSV_TM_204_89_ASIC[40] TSV_TM_204_89_ASIC[39] 
++ TSV_TM_204_89_ASIC[38] TSV_TM_204_89_ASIC[37] TSV_TM_204_89_ASIC[36] 
++ TSV_TM_204_89_ASIC[35] TSV_TM_204_89_ASIC[34] TSV_TM_204_89_ASIC[33] 
++ TSV_TM_204_89_ASIC[32] TSV_TM_204_89_ASIC[31] TSV_TM_204_89_ASIC[30] 
++ TSV_TM_204_89_ASIC[29] TSV_TM_204_89_ASIC[28] TSV_TM_204_89_ASIC[27] 
++ TSV_TM_204_89_ASIC[26] TSV_TM_204_89_ASIC[25] TSV_TM_204_89_ASIC[24] 
++ TSV_TM_204_89_ASIC[23] TSV_TM_204_89_ASIC[22] TSV_TM_204_89_ASIC[21] 
++ TSV_TM_204_89_ASIC[20] TSV_TM_204_89_ASIC[19] TSV_TM_204_89_ASIC[18] 
++ TSV_TM_204_89_ASIC[17] TSV_TM_204_89_ASIC[16] TSV_TM_204_89_ASIC[15] 
++ TSV_TM_204_89_ASIC[14] TSV_TM_204_89_ASIC[13] TSV_TM_204_89_ASIC[12] 
++ TSV_TM_204_89_ASIC[11] TSV_TM_204_89_ASIC[10] TSV_TM_204_89_ASIC[9] 
++ TSV_TM_204_89_ASIC[8] TSV_TM_204_89_ASIC[7] TSV_TM_204_89_ASIC[6] 
++ TSV_TM_204_89_ASIC[5] TSV_TM_204_89_ASIC[4] TSV_TM_204_89_ASIC[3] 
++ TSV_TM_204_89_ASIC[2] TSV_TM_204_89_ASIC[1] TSV_TM_204_89_ASIC[0] 
++ TSV_TM_428_333[95] TSV_TM_428_333[94] TSV_TM_428_333[93] TSV_TM_428_333[92] 
++ TSV_TM_428_333[91] TSV_TM_428_333[90] TSV_TM_428_333[89] TSV_TM_428_333[88] 
++ TSV_TM_428_333[87] TSV_TM_428_333[86] TSV_TM_428_333[85] TSV_TM_428_333[84] 
++ TSV_TM_428_333[83] TSV_TM_428_333[82] TSV_TM_428_333[81] TSV_TM_428_333[80] 
++ TSV_TM_428_333[79] TSV_TM_428_333[78] TSV_TM_428_333[77] TSV_TM_428_333[76] 
++ TSV_TM_428_333[75] TSV_TM_428_333[74] TSV_TM_428_333[73] TSV_TM_428_333[72] 
++ TSV_TM_428_333[71] TSV_TM_428_333[70] TSV_TM_428_333[69] TSV_TM_428_333[68] 
++ TSV_TM_428_333[67] TSV_TM_428_333[66] TSV_TM_428_333[65] TSV_TM_428_333[64] 
++ TSV_TM_428_333[63] TSV_TM_428_333[62] TSV_TM_428_333[61] TSV_TM_428_333[60] 
++ TSV_TM_428_333[59] TSV_TM_428_333[58] TSV_TM_428_333[57] TSV_TM_428_333[56] 
++ TSV_TM_428_333[55] TSV_TM_428_333[54] TSV_TM_428_333[53] TSV_TM_428_333[52] 
++ TSV_TM_428_333[51] TSV_TM_428_333[50] TSV_TM_428_333[49] TSV_TM_428_333[48] 
++ TSV_TM_428_333[47] TSV_TM_428_333[46] TSV_TM_428_333[45] TSV_TM_428_333[44] 
++ TSV_TM_428_333[43] TSV_TM_428_333[42] TSV_TM_428_333[41] TSV_TM_428_333[40] 
++ TSV_TM_428_333[39] TSV_TM_428_333[38] TSV_TM_428_333[37] TSV_TM_428_333[36] 
++ TSV_TM_428_333[35] TSV_TM_428_333[34] TSV_TM_428_333[33] TSV_TM_428_333[32] 
++ TSV_TM_428_333[31] TSV_TM_428_333[30] TSV_TM_428_333[29] TSV_TM_428_333[28] 
++ TSV_TM_428_333[27] TSV_TM_428_333[26] TSV_TM_428_333[25] TSV_TM_428_333[24] 
++ TSV_TM_428_333[23] TSV_TM_428_333[22] TSV_TM_428_333[21] TSV_TM_428_333[20] 
++ TSV_TM_428_333[19] TSV_TM_428_333[18] TSV_TM_428_333[17] TSV_TM_428_333[16] 
++ TSV_TM_428_333[15] TSV_TM_428_333[14] TSV_TM_428_333[13] TSV_TM_428_333[12] 
++ TSV_TM_428_333[11] TSV_TM_428_333[10] TSV_TM_428_333[9] TSV_TM_428_333[8] 
++ TSV_TM_428_333[7] TSV_TM_428_333[6] TSV_TM_428_333[5] TSV_TM_428_333[4] 
++ TSV_TM_428_333[3] TSV_TM_428_333[2] TSV_TM_428_333[1] TSV_TM_428_333[0] 
++ TSV_TM_428_333_ASIC[95] TSV_TM_428_333_ASIC[94] TSV_TM_428_333_ASIC[93] 
++ TSV_TM_428_333_ASIC[92] TSV_TM_428_333_ASIC[91] TSV_TM_428_333_ASIC[90] 
++ TSV_TM_428_333_ASIC[89] TSV_TM_428_333_ASIC[88] TSV_TM_428_333_ASIC[87] 
++ TSV_TM_428_333_ASIC[86] TSV_TM_428_333_ASIC[85] TSV_TM_428_333_ASIC[84] 
++ TSV_TM_428_333_ASIC[83] TSV_TM_428_333_ASIC[82] TSV_TM_428_333_ASIC[81] 
++ TSV_TM_428_333_ASIC[80] TSV_TM_428_333_ASIC[79] TSV_TM_428_333_ASIC[78] 
++ TSV_TM_428_333_ASIC[77] TSV_TM_428_333_ASIC[76] TSV_TM_428_333_ASIC[75] 
++ TSV_TM_428_333_ASIC[74] TSV_TM_428_333_ASIC[73] TSV_TM_428_333_ASIC[72] 
++ TSV_TM_428_333_ASIC[71] TSV_TM_428_333_ASIC[70] TSV_TM_428_333_ASIC[69] 
++ TSV_TM_428_333_ASIC[68] TSV_TM_428_333_ASIC[67] TSV_TM_428_333_ASIC[66] 
++ TSV_TM_428_333_ASIC[65] TSV_TM_428_333_ASIC[64] TSV_TM_428_333_ASIC[63] 
++ TSV_TM_428_333_ASIC[62] TSV_TM_428_333_ASIC[61] TSV_TM_428_333_ASIC[60] 
++ TSV_TM_428_333_ASIC[59] TSV_TM_428_333_ASIC[58] TSV_TM_428_333_ASIC[57] 
++ TSV_TM_428_333_ASIC[56] TSV_TM_428_333_ASIC[55] TSV_TM_428_333_ASIC[54] 
++ TSV_TM_428_333_ASIC[53] TSV_TM_428_333_ASIC[52] TSV_TM_428_333_ASIC[51] 
++ TSV_TM_428_333_ASIC[50] TSV_TM_428_333_ASIC[49] TSV_TM_428_333_ASIC[48] 
++ TSV_TM_428_333_ASIC[47] TSV_TM_428_333_ASIC[46] TSV_TM_428_333_ASIC[45] 
++ TSV_TM_428_333_ASIC[44] TSV_TM_428_333_ASIC[43] TSV_TM_428_333_ASIC[42] 
++ TSV_TM_428_333_ASIC[41] TSV_TM_428_333_ASIC[40] TSV_TM_428_333_ASIC[39] 
++ TSV_TM_428_333_ASIC[38] TSV_TM_428_333_ASIC[37] TSV_TM_428_333_ASIC[36] 
++ TSV_TM_428_333_ASIC[35] TSV_TM_428_333_ASIC[34] TSV_TM_428_333_ASIC[33] 
++ TSV_TM_428_333_ASIC[32] TSV_TM_428_333_ASIC[31] TSV_TM_428_333_ASIC[30] 
++ TSV_TM_428_333_ASIC[29] TSV_TM_428_333_ASIC[28] TSV_TM_428_333_ASIC[27] 
++ TSV_TM_428_333_ASIC[26] TSV_TM_428_333_ASIC[25] TSV_TM_428_333_ASIC[24] 
++ TSV_TM_428_333_ASIC[23] TSV_TM_428_333_ASIC[22] TSV_TM_428_333_ASIC[21] 
++ TSV_TM_428_333_ASIC[20] TSV_TM_428_333_ASIC[19] TSV_TM_428_333_ASIC[18] 
++ TSV_TM_428_333_ASIC[17] TSV_TM_428_333_ASIC[16] TSV_TM_428_333_ASIC[15] 
++ TSV_TM_428_333_ASIC[14] TSV_TM_428_333_ASIC[13] TSV_TM_428_333_ASIC[12] 
++ TSV_TM_428_333_ASIC[11] TSV_TM_428_333_ASIC[10] TSV_TM_428_333_ASIC[9] 
++ TSV_TM_428_333_ASIC[8] TSV_TM_428_333_ASIC[7] TSV_TM_428_333_ASIC[6] 
++ TSV_TM_428_333_ASIC[5] TSV_TM_428_333_ASIC[4] TSV_TM_428_333_ASIC[3] 
++ TSV_TM_428_333_ASIC[2] TSV_TM_428_333_ASIC[1] TSV_TM_428_333_ASIC[0] 
++ ls_en_asic vdd vdd_array vss vss_array
+*.PININFO TSV_TM_204_89_ASIC[115]:I TSV_TM_204_89_ASIC[114]:I 
+*.PININFO TSV_TM_204_89_ASIC[113]:I TSV_TM_204_89_ASIC[112]:I 
+*.PININFO TSV_TM_204_89_ASIC[111]:I TSV_TM_204_89_ASIC[110]:I 
+*.PININFO TSV_TM_204_89_ASIC[109]:I TSV_TM_204_89_ASIC[108]:I 
+*.PININFO TSV_TM_204_89_ASIC[107]:I TSV_TM_204_89_ASIC[106]:I 
+*.PININFO TSV_TM_204_89_ASIC[105]:I TSV_TM_204_89_ASIC[104]:I 
+*.PININFO TSV_TM_204_89_ASIC[103]:I TSV_TM_204_89_ASIC[102]:I 
+*.PININFO TSV_TM_204_89_ASIC[101]:I TSV_TM_204_89_ASIC[100]:I 
+*.PININFO TSV_TM_204_89_ASIC[99]:I TSV_TM_204_89_ASIC[98]:I 
+*.PININFO TSV_TM_204_89_ASIC[97]:I TSV_TM_204_89_ASIC[96]:I 
+*.PININFO TSV_TM_204_89_ASIC[95]:I TSV_TM_204_89_ASIC[94]:I 
+*.PININFO TSV_TM_204_89_ASIC[93]:I TSV_TM_204_89_ASIC[92]:I 
+*.PININFO TSV_TM_204_89_ASIC[91]:I TSV_TM_204_89_ASIC[90]:I 
+*.PININFO TSV_TM_204_89_ASIC[89]:I TSV_TM_204_89_ASIC[88]:I 
+*.PININFO TSV_TM_204_89_ASIC[87]:I TSV_TM_204_89_ASIC[86]:I 
+*.PININFO TSV_TM_204_89_ASIC[85]:I TSV_TM_204_89_ASIC[84]:I 
+*.PININFO TSV_TM_204_89_ASIC[83]:I TSV_TM_204_89_ASIC[82]:I 
+*.PININFO TSV_TM_204_89_ASIC[81]:I TSV_TM_204_89_ASIC[80]:I 
+*.PININFO TSV_TM_204_89_ASIC[79]:I TSV_TM_204_89_ASIC[78]:I 
+*.PININFO TSV_TM_204_89_ASIC[77]:I TSV_TM_204_89_ASIC[76]:I 
+*.PININFO TSV_TM_204_89_ASIC[75]:I TSV_TM_204_89_ASIC[74]:I 
+*.PININFO TSV_TM_204_89_ASIC[73]:I TSV_TM_204_89_ASIC[72]:I 
+*.PININFO TSV_TM_204_89_ASIC[71]:I TSV_TM_204_89_ASIC[70]:I 
+*.PININFO TSV_TM_204_89_ASIC[69]:I TSV_TM_204_89_ASIC[68]:I 
+*.PININFO TSV_TM_204_89_ASIC[67]:I TSV_TM_204_89_ASIC[66]:I 
+*.PININFO TSV_TM_204_89_ASIC[65]:I TSV_TM_204_89_ASIC[64]:I 
+*.PININFO TSV_TM_204_89_ASIC[63]:I TSV_TM_204_89_ASIC[62]:I 
+*.PININFO TSV_TM_204_89_ASIC[61]:I TSV_TM_204_89_ASIC[60]:I 
+*.PININFO TSV_TM_204_89_ASIC[59]:I TSV_TM_204_89_ASIC[58]:I 
+*.PININFO TSV_TM_204_89_ASIC[57]:I TSV_TM_204_89_ASIC[56]:I 
+*.PININFO TSV_TM_204_89_ASIC[55]:I TSV_TM_204_89_ASIC[54]:I 
+*.PININFO TSV_TM_204_89_ASIC[53]:I TSV_TM_204_89_ASIC[52]:I 
+*.PININFO TSV_TM_204_89_ASIC[51]:I TSV_TM_204_89_ASIC[50]:I 
+*.PININFO TSV_TM_204_89_ASIC[49]:I TSV_TM_204_89_ASIC[48]:I 
+*.PININFO TSV_TM_204_89_ASIC[47]:I TSV_TM_204_89_ASIC[46]:I 
+*.PININFO TSV_TM_204_89_ASIC[45]:I TSV_TM_204_89_ASIC[44]:I 
+*.PININFO TSV_TM_204_89_ASIC[43]:I TSV_TM_204_89_ASIC[42]:I 
+*.PININFO TSV_TM_204_89_ASIC[41]:I TSV_TM_204_89_ASIC[40]:I 
+*.PININFO TSV_TM_204_89_ASIC[39]:I TSV_TM_204_89_ASIC[38]:I 
+*.PININFO TSV_TM_204_89_ASIC[37]:I TSV_TM_204_89_ASIC[36]:I 
+*.PININFO TSV_TM_204_89_ASIC[35]:I TSV_TM_204_89_ASIC[34]:I 
+*.PININFO TSV_TM_204_89_ASIC[33]:I TSV_TM_204_89_ASIC[32]:I 
+*.PININFO TSV_TM_204_89_ASIC[31]:I TSV_TM_204_89_ASIC[30]:I 
+*.PININFO TSV_TM_204_89_ASIC[29]:I TSV_TM_204_89_ASIC[28]:I 
+*.PININFO TSV_TM_204_89_ASIC[27]:I TSV_TM_204_89_ASIC[26]:I 
+*.PININFO TSV_TM_204_89_ASIC[25]:I TSV_TM_204_89_ASIC[24]:I 
+*.PININFO TSV_TM_204_89_ASIC[23]:I TSV_TM_204_89_ASIC[22]:I 
+*.PININFO TSV_TM_204_89_ASIC[21]:I TSV_TM_204_89_ASIC[20]:I 
+*.PININFO TSV_TM_204_89_ASIC[19]:I TSV_TM_204_89_ASIC[18]:I 
+*.PININFO TSV_TM_204_89_ASIC[17]:I TSV_TM_204_89_ASIC[16]:I 
+*.PININFO TSV_TM_204_89_ASIC[15]:I TSV_TM_204_89_ASIC[14]:I 
+*.PININFO TSV_TM_204_89_ASIC[13]:I TSV_TM_204_89_ASIC[12]:I 
+*.PININFO TSV_TM_204_89_ASIC[11]:I TSV_TM_204_89_ASIC[10]:I 
+*.PININFO TSV_TM_204_89_ASIC[9]:I TSV_TM_204_89_ASIC[8]:I 
+*.PININFO TSV_TM_204_89_ASIC[7]:I TSV_TM_204_89_ASIC[6]:I 
+*.PININFO TSV_TM_204_89_ASIC[5]:I TSV_TM_204_89_ASIC[4]:I 
+*.PININFO TSV_TM_204_89_ASIC[3]:I TSV_TM_204_89_ASIC[2]:I 
+*.PININFO TSV_TM_204_89_ASIC[1]:I TSV_TM_204_89_ASIC[0]:I 
+*.PININFO TSV_TM_428_333_ASIC[95]:I TSV_TM_428_333_ASIC[94]:I 
+*.PININFO TSV_TM_428_333_ASIC[93]:I TSV_TM_428_333_ASIC[92]:I 
+*.PININFO TSV_TM_428_333_ASIC[91]:I TSV_TM_428_333_ASIC[90]:I 
+*.PININFO TSV_TM_428_333_ASIC[89]:I TSV_TM_428_333_ASIC[88]:I 
+*.PININFO TSV_TM_428_333_ASIC[87]:I TSV_TM_428_333_ASIC[86]:I 
+*.PININFO TSV_TM_428_333_ASIC[85]:I TSV_TM_428_333_ASIC[84]:I 
+*.PININFO TSV_TM_428_333_ASIC[83]:I TSV_TM_428_333_ASIC[82]:I 
+*.PININFO TSV_TM_428_333_ASIC[81]:I TSV_TM_428_333_ASIC[80]:I 
+*.PININFO TSV_TM_428_333_ASIC[79]:I TSV_TM_428_333_ASIC[78]:I 
+*.PININFO TSV_TM_428_333_ASIC[77]:I TSV_TM_428_333_ASIC[76]:I 
+*.PININFO TSV_TM_428_333_ASIC[75]:I TSV_TM_428_333_ASIC[74]:I 
+*.PININFO TSV_TM_428_333_ASIC[73]:I TSV_TM_428_333_ASIC[72]:I 
+*.PININFO TSV_TM_428_333_ASIC[71]:I TSV_TM_428_333_ASIC[70]:I 
+*.PININFO TSV_TM_428_333_ASIC[69]:I TSV_TM_428_333_ASIC[68]:I 
+*.PININFO TSV_TM_428_333_ASIC[67]:I TSV_TM_428_333_ASIC[66]:I 
+*.PININFO TSV_TM_428_333_ASIC[65]:I TSV_TM_428_333_ASIC[64]:I 
+*.PININFO TSV_TM_428_333_ASIC[63]:I TSV_TM_428_333_ASIC[62]:I 
+*.PININFO TSV_TM_428_333_ASIC[61]:I TSV_TM_428_333_ASIC[60]:I 
+*.PININFO TSV_TM_428_333_ASIC[59]:I TSV_TM_428_333_ASIC[58]:I 
+*.PININFO TSV_TM_428_333_ASIC[57]:I TSV_TM_428_333_ASIC[56]:I 
+*.PININFO TSV_TM_428_333_ASIC[55]:I TSV_TM_428_333_ASIC[54]:I 
+*.PININFO TSV_TM_428_333_ASIC[53]:I TSV_TM_428_333_ASIC[52]:I 
+*.PININFO TSV_TM_428_333_ASIC[51]:I TSV_TM_428_333_ASIC[50]:I 
+*.PININFO TSV_TM_428_333_ASIC[49]:I TSV_TM_428_333_ASIC[48]:I 
+*.PININFO TSV_TM_428_333_ASIC[47]:I TSV_TM_428_333_ASIC[46]:I 
+*.PININFO TSV_TM_428_333_ASIC[45]:I TSV_TM_428_333_ASIC[44]:I 
+*.PININFO TSV_TM_428_333_ASIC[43]:I TSV_TM_428_333_ASIC[42]:I 
+*.PININFO TSV_TM_428_333_ASIC[41]:I TSV_TM_428_333_ASIC[40]:I 
+*.PININFO TSV_TM_428_333_ASIC[39]:I TSV_TM_428_333_ASIC[38]:I 
+*.PININFO TSV_TM_428_333_ASIC[37]:I TSV_TM_428_333_ASIC[36]:I 
+*.PININFO TSV_TM_428_333_ASIC[35]:I TSV_TM_428_333_ASIC[34]:I 
+*.PININFO TSV_TM_428_333_ASIC[33]:I TSV_TM_428_333_ASIC[32]:I 
+*.PININFO TSV_TM_428_333_ASIC[31]:I TSV_TM_428_333_ASIC[30]:I 
+*.PININFO TSV_TM_428_333_ASIC[29]:I TSV_TM_428_333_ASIC[28]:I 
+*.PININFO TSV_TM_428_333_ASIC[27]:I TSV_TM_428_333_ASIC[26]:I 
+*.PININFO TSV_TM_428_333_ASIC[25]:I TSV_TM_428_333_ASIC[24]:I 
+*.PININFO TSV_TM_428_333_ASIC[23]:I TSV_TM_428_333_ASIC[22]:I 
+*.PININFO TSV_TM_428_333_ASIC[21]:I TSV_TM_428_333_ASIC[20]:I 
+*.PININFO TSV_TM_428_333_ASIC[19]:I TSV_TM_428_333_ASIC[18]:I 
+*.PININFO TSV_TM_428_333_ASIC[17]:I TSV_TM_428_333_ASIC[16]:I 
+*.PININFO TSV_TM_428_333_ASIC[15]:I TSV_TM_428_333_ASIC[14]:I 
+*.PININFO TSV_TM_428_333_ASIC[13]:I TSV_TM_428_333_ASIC[12]:I 
+*.PININFO TSV_TM_428_333_ASIC[11]:I TSV_TM_428_333_ASIC[10]:I 
+*.PININFO TSV_TM_428_333_ASIC[9]:I TSV_TM_428_333_ASIC[8]:I 
+*.PININFO TSV_TM_428_333_ASIC[7]:I TSV_TM_428_333_ASIC[6]:I 
+*.PININFO TSV_TM_428_333_ASIC[5]:I TSV_TM_428_333_ASIC[4]:I 
+*.PININFO TSV_TM_428_333_ASIC[3]:I TSV_TM_428_333_ASIC[2]:I 
+*.PININFO TSV_TM_428_333_ASIC[1]:I TSV_TM_428_333_ASIC[0]:I ls_en_asic:I 
+*.PININFO TSV_TM_204_89[115]:O TSV_TM_204_89[114]:O TSV_TM_204_89[113]:O 
+*.PININFO TSV_TM_204_89[112]:O TSV_TM_204_89[111]:O TSV_TM_204_89[110]:O 
+*.PININFO TSV_TM_204_89[109]:O TSV_TM_204_89[108]:O TSV_TM_204_89[107]:O 
+*.PININFO TSV_TM_204_89[106]:O TSV_TM_204_89[105]:O TSV_TM_204_89[104]:O 
+*.PININFO TSV_TM_204_89[103]:O TSV_TM_204_89[102]:O TSV_TM_204_89[101]:O 
+*.PININFO TSV_TM_204_89[100]:O TSV_TM_204_89[99]:O TSV_TM_204_89[98]:O 
+*.PININFO TSV_TM_204_89[97]:O TSV_TM_204_89[96]:O TSV_TM_204_89[95]:O 
+*.PININFO TSV_TM_204_89[94]:O TSV_TM_204_89[93]:O TSV_TM_204_89[92]:O 
+*.PININFO TSV_TM_204_89[91]:O TSV_TM_204_89[90]:O TSV_TM_204_89[89]:O 
+*.PININFO TSV_TM_204_89[88]:O TSV_TM_204_89[87]:O TSV_TM_204_89[86]:O 
+*.PININFO TSV_TM_204_89[85]:O TSV_TM_204_89[84]:O TSV_TM_204_89[83]:O 
+*.PININFO TSV_TM_204_89[82]:O TSV_TM_204_89[81]:O TSV_TM_204_89[80]:O 
+*.PININFO TSV_TM_204_89[79]:O TSV_TM_204_89[78]:O TSV_TM_204_89[77]:O 
+*.PININFO TSV_TM_204_89[76]:O TSV_TM_204_89[75]:O TSV_TM_204_89[74]:O 
+*.PININFO TSV_TM_204_89[73]:O TSV_TM_204_89[72]:O TSV_TM_204_89[71]:O 
+*.PININFO TSV_TM_204_89[70]:O TSV_TM_204_89[69]:O TSV_TM_204_89[68]:O 
+*.PININFO TSV_TM_204_89[67]:O TSV_TM_204_89[66]:O TSV_TM_204_89[65]:O 
+*.PININFO TSV_TM_204_89[64]:O TSV_TM_204_89[63]:O TSV_TM_204_89[62]:O 
+*.PININFO TSV_TM_204_89[61]:O TSV_TM_204_89[60]:O TSV_TM_204_89[59]:O 
+*.PININFO TSV_TM_204_89[58]:O TSV_TM_204_89[57]:O TSV_TM_204_89[56]:O 
+*.PININFO TSV_TM_204_89[55]:O TSV_TM_204_89[54]:O TSV_TM_204_89[53]:O 
+*.PININFO TSV_TM_204_89[52]:O TSV_TM_204_89[51]:O TSV_TM_204_89[50]:O 
+*.PININFO TSV_TM_204_89[49]:O TSV_TM_204_89[48]:O TSV_TM_204_89[47]:O 
+*.PININFO TSV_TM_204_89[46]:O TSV_TM_204_89[45]:O TSV_TM_204_89[44]:O 
+*.PININFO TSV_TM_204_89[43]:O TSV_TM_204_89[42]:O TSV_TM_204_89[41]:O 
+*.PININFO TSV_TM_204_89[40]:O TSV_TM_204_89[39]:O TSV_TM_204_89[38]:O 
+*.PININFO TSV_TM_204_89[37]:O TSV_TM_204_89[36]:O TSV_TM_204_89[35]:O 
+*.PININFO TSV_TM_204_89[34]:O TSV_TM_204_89[33]:O TSV_TM_204_89[32]:O 
+*.PININFO TSV_TM_204_89[31]:O TSV_TM_204_89[30]:O TSV_TM_204_89[29]:O 
+*.PININFO TSV_TM_204_89[28]:O TSV_TM_204_89[27]:O TSV_TM_204_89[26]:O 
+*.PININFO TSV_TM_204_89[25]:O TSV_TM_204_89[24]:O TSV_TM_204_89[23]:O 
+*.PININFO TSV_TM_204_89[22]:O TSV_TM_204_89[21]:O TSV_TM_204_89[20]:O 
+*.PININFO TSV_TM_204_89[19]:O TSV_TM_204_89[18]:O TSV_TM_204_89[17]:O 
+*.PININFO TSV_TM_204_89[16]:O TSV_TM_204_89[15]:O TSV_TM_204_89[14]:O 
+*.PININFO TSV_TM_204_89[13]:O TSV_TM_204_89[12]:O TSV_TM_204_89[11]:O 
+*.PININFO TSV_TM_204_89[10]:O TSV_TM_204_89[9]:O TSV_TM_204_89[8]:O 
+*.PININFO TSV_TM_204_89[7]:O TSV_TM_204_89[6]:O TSV_TM_204_89[5]:O 
+*.PININFO TSV_TM_204_89[4]:O TSV_TM_204_89[3]:O TSV_TM_204_89[2]:O 
+*.PININFO TSV_TM_204_89[1]:O TSV_TM_204_89[0]:O TSV_TM_428_333[95]:O 
+*.PININFO TSV_TM_428_333[94]:O TSV_TM_428_333[93]:O TSV_TM_428_333[92]:O 
+*.PININFO TSV_TM_428_333[91]:O TSV_TM_428_333[90]:O TSV_TM_428_333[89]:O 
+*.PININFO TSV_TM_428_333[88]:O TSV_TM_428_333[87]:O TSV_TM_428_333[86]:O 
+*.PININFO TSV_TM_428_333[85]:O TSV_TM_428_333[84]:O TSV_TM_428_333[83]:O 
+*.PININFO TSV_TM_428_333[82]:O TSV_TM_428_333[81]:O TSV_TM_428_333[80]:O 
+*.PININFO TSV_TM_428_333[79]:O TSV_TM_428_333[78]:O TSV_TM_428_333[77]:O 
+*.PININFO TSV_TM_428_333[76]:O TSV_TM_428_333[75]:O TSV_TM_428_333[74]:O 
+*.PININFO TSV_TM_428_333[73]:O TSV_TM_428_333[72]:O TSV_TM_428_333[71]:O 
+*.PININFO TSV_TM_428_333[70]:O TSV_TM_428_333[69]:O TSV_TM_428_333[68]:O 
+*.PININFO TSV_TM_428_333[67]:O TSV_TM_428_333[66]:O TSV_TM_428_333[65]:O 
+*.PININFO TSV_TM_428_333[64]:O TSV_TM_428_333[63]:O TSV_TM_428_333[62]:O 
+*.PININFO TSV_TM_428_333[61]:O TSV_TM_428_333[60]:O TSV_TM_428_333[59]:O 
+*.PININFO TSV_TM_428_333[58]:O TSV_TM_428_333[57]:O TSV_TM_428_333[56]:O 
+*.PININFO TSV_TM_428_333[55]:O TSV_TM_428_333[54]:O TSV_TM_428_333[53]:O 
+*.PININFO TSV_TM_428_333[52]:O TSV_TM_428_333[51]:O TSV_TM_428_333[50]:O 
+*.PININFO TSV_TM_428_333[49]:O TSV_TM_428_333[48]:O TSV_TM_428_333[47]:O 
+*.PININFO TSV_TM_428_333[46]:O TSV_TM_428_333[45]:O TSV_TM_428_333[44]:O 
+*.PININFO TSV_TM_428_333[43]:O TSV_TM_428_333[42]:O TSV_TM_428_333[41]:O 
+*.PININFO TSV_TM_428_333[40]:O TSV_TM_428_333[39]:O TSV_TM_428_333[38]:O 
+*.PININFO TSV_TM_428_333[37]:O TSV_TM_428_333[36]:O TSV_TM_428_333[35]:O 
+*.PININFO TSV_TM_428_333[34]:O TSV_TM_428_333[33]:O TSV_TM_428_333[32]:O 
+*.PININFO TSV_TM_428_333[31]:O TSV_TM_428_333[30]:O TSV_TM_428_333[29]:O 
+*.PININFO TSV_TM_428_333[28]:O TSV_TM_428_333[27]:O TSV_TM_428_333[26]:O 
+*.PININFO TSV_TM_428_333[25]:O TSV_TM_428_333[24]:O TSV_TM_428_333[23]:O 
+*.PININFO TSV_TM_428_333[22]:O TSV_TM_428_333[21]:O TSV_TM_428_333[20]:O 
+*.PININFO TSV_TM_428_333[19]:O TSV_TM_428_333[18]:O TSV_TM_428_333[17]:O 
+*.PININFO TSV_TM_428_333[16]:O TSV_TM_428_333[15]:O TSV_TM_428_333[14]:O 
+*.PININFO TSV_TM_428_333[13]:O TSV_TM_428_333[12]:O TSV_TM_428_333[11]:O 
+*.PININFO TSV_TM_428_333[10]:O TSV_TM_428_333[9]:O TSV_TM_428_333[8]:O 
+*.PININFO TSV_TM_428_333[7]:O TSV_TM_428_333[6]:O TSV_TM_428_333[5]:O 
+*.PININFO TSV_TM_428_333[4]:O TSV_TM_428_333[3]:O TSV_TM_428_333[2]:O 
+*.PININFO TSV_TM_428_333[1]:O TSV_TM_428_333[0]:O vdd:B vdd_array:B vss:B 
+*.PININFO vss_array:B
+Xi81<17> vdd_array vss_array net281[17] TSV_TM_428_333[89] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi81<16> vdd_array vss_array net281[16] TSV_TM_428_333[88] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi81<15> vdd_array vss_array net281[15] TSV_TM_428_333[87] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi81<14> vdd_array vss_array net281[14] TSV_TM_428_333[86] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi81<13> vdd_array vss_array net281[13] TSV_TM_428_333[85] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi81<12> vdd_array vss_array net281[12] TSV_TM_428_333[84] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi81<11> vdd_array vss_array net281[11] TSV_TM_428_333[83] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi81<10> vdd_array vss_array net281[10] TSV_TM_428_333[82] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi81<9> vdd_array vss_array net281[9] TSV_TM_428_333[81] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi81<8> vdd_array vss_array net281[8] TSV_TM_428_333[80] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi81<7> vdd_array vss_array net281[7] TSV_TM_428_333[79] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi81<6> vdd_array vss_array net281[6] TSV_TM_428_333[78] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi81<5> vdd_array vss_array net281[5] TSV_TM_428_333[77] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi81<4> vdd_array vss_array net281[4] TSV_TM_428_333[76] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi81<3> vdd_array vss_array net281[3] TSV_TM_428_333[75] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi81<2> vdd_array vss_array net281[2] TSV_TM_428_333[74] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi81<1> vdd_array vss_array net281[1] TSV_TM_428_333[73] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi81<0> vdd_array vss_array net281[0] TSV_TM_428_333[72] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi80<17> vdd_array vss_array net282[17] TSV_TM_428_333[71] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi80<16> vdd_array vss_array net282[16] TSV_TM_428_333[70] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi80<15> vdd_array vss_array net282[15] TSV_TM_428_333[69] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi80<14> vdd_array vss_array net282[14] TSV_TM_428_333[68] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi80<13> vdd_array vss_array net282[13] TSV_TM_428_333[67] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi80<12> vdd_array vss_array net282[12] TSV_TM_428_333[66] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi80<11> vdd_array vss_array net282[11] TSV_TM_428_333[65] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi80<10> vdd_array vss_array net282[10] TSV_TM_428_333[64] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi80<9> vdd_array vss_array net282[9] TSV_TM_428_333[63] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi80<8> vdd_array vss_array net282[8] TSV_TM_428_333[62] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi80<7> vdd_array vss_array net282[7] TSV_TM_428_333[61] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi80<6> vdd_array vss_array net282[6] TSV_TM_428_333[60] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi80<5> vdd_array vss_array net282[5] TSV_TM_428_333[59] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi80<4> vdd_array vss_array net282[4] TSV_TM_428_333[58] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi80<3> vdd_array vss_array net282[3] TSV_TM_428_333[57] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi80<2> vdd_array vss_array net282[2] TSV_TM_428_333[56] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi80<1> vdd_array vss_array net282[1] TSV_TM_428_333[55] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi80<0> vdd_array vss_array net282[0] TSV_TM_428_333[54] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi82<5> vdd_array vss_array net0240[5] TSV_TM_428_333[95] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi82<4> vdd_array vss_array net0240[4] TSV_TM_428_333[94] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi82<3> vdd_array vss_array net0240[3] TSV_TM_428_333[93] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi82<2> vdd_array vss_array net0240[2] TSV_TM_428_333[92] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi82<1> vdd_array vss_array net0240[1] TSV_TM_428_333[91] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi82<0> vdd_array vss_array net0240[0] TSV_TM_428_333[90] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi71<17> vdd_array vss_array net286[17] TSV_TM_428_333[53] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi71<16> vdd_array vss_array net286[16] TSV_TM_428_333[52] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi71<15> vdd_array vss_array net286[15] TSV_TM_428_333[51] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi71<14> vdd_array vss_array net286[14] TSV_TM_428_333[50] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi71<13> vdd_array vss_array net286[13] TSV_TM_428_333[49] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi71<12> vdd_array vss_array net286[12] TSV_TM_428_333[48] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi71<11> vdd_array vss_array net286[11] TSV_TM_428_333[47] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi71<10> vdd_array vss_array net286[10] TSV_TM_428_333[46] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi71<9> vdd_array vss_array net286[9] TSV_TM_428_333[45] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi71<8> vdd_array vss_array net286[8] TSV_TM_428_333[44] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi71<7> vdd_array vss_array net286[7] TSV_TM_428_333[43] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi71<6> vdd_array vss_array net286[6] TSV_TM_428_333[42] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi71<5> vdd_array vss_array net286[5] TSV_TM_428_333[41] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi71<4> vdd_array vss_array net286[4] TSV_TM_428_333[40] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi71<3> vdd_array vss_array net286[3] TSV_TM_428_333[39] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi71<2> vdd_array vss_array net286[2] TSV_TM_428_333[38] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi71<1> vdd_array vss_array net286[1] TSV_TM_428_333[37] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi71<0> vdd_array vss_array net286[0] TSV_TM_428_333[36] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi70<17> vdd_array vss_array net283[17] TSV_TM_428_333[35] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi70<16> vdd_array vss_array net283[16] TSV_TM_428_333[34] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi70<15> vdd_array vss_array net283[15] TSV_TM_428_333[33] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi70<14> vdd_array vss_array net283[14] TSV_TM_428_333[32] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi70<13> vdd_array vss_array net283[13] TSV_TM_428_333[31] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi70<12> vdd_array vss_array net283[12] TSV_TM_428_333[30] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi70<11> vdd_array vss_array net283[11] TSV_TM_428_333[29] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi70<10> vdd_array vss_array net283[10] TSV_TM_428_333[28] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi70<9> vdd_array vss_array net283[9] TSV_TM_428_333[27] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi70<8> vdd_array vss_array net283[8] TSV_TM_428_333[26] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi70<7> vdd_array vss_array net283[7] TSV_TM_428_333[25] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi70<6> vdd_array vss_array net283[6] TSV_TM_428_333[24] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi70<5> vdd_array vss_array net283[5] TSV_TM_428_333[23] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi70<4> vdd_array vss_array net283[4] TSV_TM_428_333[22] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi70<3> vdd_array vss_array net283[3] TSV_TM_428_333[21] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi70<2> vdd_array vss_array net283[2] TSV_TM_428_333[20] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi70<1> vdd_array vss_array net283[1] TSV_TM_428_333[19] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi70<0> vdd_array vss_array net283[0] TSV_TM_428_333[18] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi69<17> vdd_array vss_array net284[17] TSV_TM_428_333[17] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi69<16> vdd_array vss_array net284[16] TSV_TM_428_333[16] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi69<15> vdd_array vss_array net284[15] TSV_TM_428_333[15] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi69<14> vdd_array vss_array net284[14] TSV_TM_428_333[14] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi69<13> vdd_array vss_array net284[13] TSV_TM_428_333[13] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi69<12> vdd_array vss_array net284[12] TSV_TM_428_333[12] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi69<11> vdd_array vss_array net284[11] TSV_TM_428_333[11] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi69<10> vdd_array vss_array net284[10] TSV_TM_428_333[10] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi69<9> vdd_array vss_array net284[9] TSV_TM_428_333[9] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi69<8> vdd_array vss_array net284[8] TSV_TM_428_333[8] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi69<7> vdd_array vss_array net284[7] TSV_TM_428_333[7] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi69<6> vdd_array vss_array net284[6] TSV_TM_428_333[6] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi69<5> vdd_array vss_array net284[5] TSV_TM_428_333[5] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi69<4> vdd_array vss_array net284[4] TSV_TM_428_333[4] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi69<3> vdd_array vss_array net284[3] TSV_TM_428_333[3] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi69<2> vdd_array vss_array net284[2] TSV_TM_428_333[2] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi69<1> vdd_array vss_array net284[1] TSV_TM_428_333[1] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi69<0> vdd_array vss_array net284[0] TSV_TM_428_333[0] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi67<17> vdd_array vss_array net287[17] TSV_TM_204_89[107] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi67<16> vdd_array vss_array net287[16] TSV_TM_204_89[106] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi67<15> vdd_array vss_array net287[15] TSV_TM_204_89[105] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi67<14> vdd_array vss_array net287[14] TSV_TM_204_89[104] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi67<13> vdd_array vss_array net287[13] TSV_TM_204_89[103] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi67<12> vdd_array vss_array net287[12] TSV_TM_204_89[102] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi67<11> vdd_array vss_array net287[11] TSV_TM_204_89[101] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi67<10> vdd_array vss_array net287[10] TSV_TM_204_89[100] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi67<9> vdd_array vss_array net287[9] TSV_TM_204_89[99] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi67<8> vdd_array vss_array net287[8] TSV_TM_204_89[98] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi67<7> vdd_array vss_array net287[7] TSV_TM_204_89[97] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi67<6> vdd_array vss_array net287[6] TSV_TM_204_89[96] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi67<5> vdd_array vss_array net287[5] TSV_TM_204_89[95] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi67<4> vdd_array vss_array net287[4] TSV_TM_204_89[94] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi67<3> vdd_array vss_array net287[3] TSV_TM_204_89[93] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi67<2> vdd_array vss_array net287[2] TSV_TM_204_89[92] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi67<1> vdd_array vss_array net287[1] TSV_TM_204_89[91] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi67<0> vdd_array vss_array net287[0] TSV_TM_204_89[90] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi65<17> vdd_array vss_array net289[17] TSV_TM_204_89[71] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi65<16> vdd_array vss_array net289[16] TSV_TM_204_89[70] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi65<15> vdd_array vss_array net289[15] TSV_TM_204_89[69] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi65<14> vdd_array vss_array net289[14] TSV_TM_204_89[68] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi65<13> vdd_array vss_array net289[13] TSV_TM_204_89[67] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi65<12> vdd_array vss_array net289[12] TSV_TM_204_89[66] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi65<11> vdd_array vss_array net289[11] TSV_TM_204_89[65] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi65<10> vdd_array vss_array net289[10] TSV_TM_204_89[64] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi65<9> vdd_array vss_array net289[9] TSV_TM_204_89[63] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi65<8> vdd_array vss_array net289[8] TSV_TM_204_89[62] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi65<7> vdd_array vss_array net289[7] TSV_TM_204_89[61] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi65<6> vdd_array vss_array net289[6] TSV_TM_204_89[60] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi65<5> vdd_array vss_array net289[5] TSV_TM_204_89[59] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi65<4> vdd_array vss_array net289[4] TSV_TM_204_89[58] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi65<3> vdd_array vss_array net289[3] TSV_TM_204_89[57] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi65<2> vdd_array vss_array net289[2] TSV_TM_204_89[56] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi65<1> vdd_array vss_array net289[1] TSV_TM_204_89[55] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi65<0> vdd_array vss_array net289[0] TSV_TM_204_89[54] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi64<17> vdd_array vss_array net290[17] TSV_TM_204_89[53] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi64<16> vdd_array vss_array net290[16] TSV_TM_204_89[52] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi64<15> vdd_array vss_array net290[15] TSV_TM_204_89[51] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi64<14> vdd_array vss_array net290[14] TSV_TM_204_89[50] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi64<13> vdd_array vss_array net290[13] TSV_TM_204_89[49] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi64<12> vdd_array vss_array net290[12] TSV_TM_204_89[48] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi64<11> vdd_array vss_array net290[11] TSV_TM_204_89[47] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi64<10> vdd_array vss_array net290[10] TSV_TM_204_89[46] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi64<9> vdd_array vss_array net290[9] TSV_TM_204_89[45] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi64<8> vdd_array vss_array net290[8] TSV_TM_204_89[44] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi64<7> vdd_array vss_array net290[7] TSV_TM_204_89[43] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi64<6> vdd_array vss_array net290[6] TSV_TM_204_89[42] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi64<5> vdd_array vss_array net290[5] TSV_TM_204_89[41] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi64<4> vdd_array vss_array net290[4] TSV_TM_204_89[40] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi64<3> vdd_array vss_array net290[3] TSV_TM_204_89[39] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi64<2> vdd_array vss_array net290[2] TSV_TM_204_89[38] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi64<1> vdd_array vss_array net290[1] TSV_TM_204_89[37] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi64<0> vdd_array vss_array net290[0] TSV_TM_204_89[36] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi68<7> vdd_array vss_array net0245[7] TSV_TM_204_89[115] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi68<6> vdd_array vss_array net0245[6] TSV_TM_204_89[114] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi68<5> vdd_array vss_array net0245[5] TSV_TM_204_89[113] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi68<4> vdd_array vss_array net0245[4] TSV_TM_204_89[112] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi68<3> vdd_array vss_array net0245[3] TSV_TM_204_89[111] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi68<2> vdd_array vss_array net0245[2] TSV_TM_204_89[110] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi68<1> vdd_array vss_array net0245[1] TSV_TM_204_89[109] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi68<0> vdd_array vss_array net0245[0] TSV_TM_204_89[108] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi66<17> vdd_array vss_array net0248[17] TSV_TM_204_89[89] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi66<16> vdd_array vss_array net0248[16] TSV_TM_204_89[88] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi66<15> vdd_array vss_array net0248[15] TSV_TM_204_89[87] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi66<14> vdd_array vss_array net0248[14] TSV_TM_204_89[86] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi66<13> vdd_array vss_array net0248[13] TSV_TM_204_89[85] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi66<12> vdd_array vss_array net0248[12] TSV_TM_204_89[84] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi66<11> vdd_array vss_array net0248[11] TSV_TM_204_89[83] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi66<10> vdd_array vss_array net0248[10] TSV_TM_204_89[82] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi66<9> vdd_array vss_array net0248[9] TSV_TM_204_89[81] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi66<8> vdd_array vss_array net0248[8] TSV_TM_204_89[80] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi66<7> vdd_array vss_array net0248[7] TSV_TM_204_89[79] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi66<6> vdd_array vss_array net0248[6] TSV_TM_204_89[78] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi66<5> vdd_array vss_array net0248[5] TSV_TM_204_89[77] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi66<4> vdd_array vss_array net0248[4] TSV_TM_204_89[76] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi66<3> vdd_array vss_array net0248[3] TSV_TM_204_89[75] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi66<2> vdd_array vss_array net0248[2] TSV_TM_204_89[74] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi66<1> vdd_array vss_array net0248[1] TSV_TM_204_89[73] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi66<0> vdd_array vss_array net0248[0] TSV_TM_204_89[72] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi45<17> vdd_array vss_array net291[17] TSV_TM_204_89[35] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi45<16> vdd_array vss_array net291[16] TSV_TM_204_89[34] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi45<15> vdd_array vss_array net291[15] TSV_TM_204_89[33] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi45<14> vdd_array vss_array net291[14] TSV_TM_204_89[32] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi45<13> vdd_array vss_array net291[13] TSV_TM_204_89[31] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi45<12> vdd_array vss_array net291[12] TSV_TM_204_89[30] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi45<11> vdd_array vss_array net291[11] TSV_TM_204_89[29] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi45<10> vdd_array vss_array net291[10] TSV_TM_204_89[28] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi45<9> vdd_array vss_array net291[9] TSV_TM_204_89[27] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi45<8> vdd_array vss_array net291[8] TSV_TM_204_89[26] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi45<7> vdd_array vss_array net291[7] TSV_TM_204_89[25] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi45<6> vdd_array vss_array net291[6] TSV_TM_204_89[24] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi45<5> vdd_array vss_array net291[5] TSV_TM_204_89[23] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi45<4> vdd_array vss_array net291[4] TSV_TM_204_89[22] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi45<3> vdd_array vss_array net291[3] TSV_TM_204_89[21] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi45<2> vdd_array vss_array net291[2] TSV_TM_204_89[20] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi45<1> vdd_array vss_array net291[1] TSV_TM_204_89[19] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi45<0> vdd_array vss_array net291[0] TSV_TM_204_89[18] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xlv_tm_gen<17> vdd_array vss_array net292[17] TSV_TM_204_89[17] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xlv_tm_gen<16> vdd_array vss_array net292[16] TSV_TM_204_89[16] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xlv_tm_gen<15> vdd_array vss_array net292[15] TSV_TM_204_89[15] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xlv_tm_gen<14> vdd_array vss_array net292[14] TSV_TM_204_89[14] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xlv_tm_gen<13> vdd_array vss_array net292[13] TSV_TM_204_89[13] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xlv_tm_gen<12> vdd_array vss_array net292[12] TSV_TM_204_89[12] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xlv_tm_gen<11> vdd_array vss_array net292[11] TSV_TM_204_89[11] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xlv_tm_gen<10> vdd_array vss_array net292[10] TSV_TM_204_89[10] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xlv_tm_gen<9> vdd_array vss_array net292[9] TSV_TM_204_89[9] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xlv_tm_gen<8> vdd_array vss_array net292[8] TSV_TM_204_89[8] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xlv_tm_gen<7> vdd_array vss_array net292[7] TSV_TM_204_89[7] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xlv_tm_gen<6> vdd_array vss_array net292[6] TSV_TM_204_89[6] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xlv_tm_gen<5> vdd_array vss_array net292[5] TSV_TM_204_89[5] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xlv_tm_gen<4> vdd_array vss_array net292[4] TSV_TM_204_89[4] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xlv_tm_gen<3> vdd_array vss_array net292[3] TSV_TM_204_89[3] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xlv_tm_gen<2> vdd_array vss_array net292[2] TSV_TM_204_89[2] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xlv_tm_gen<1> vdd_array vss_array net292[1] TSV_TM_204_89[1] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xlv_tm_gen<0> vdd_array vss_array net292[0] TSV_TM_204_89[0] vdd vss / 
++ physpined_Levelshift_1p1buf
+Xi54<7> TSV_TM_204_89_ASIC[115] ls_en_asic_buf6 vdd vss net0232[7] / 
++ physpined_ND2D2BWP7T30P140
+Xi54<6> TSV_TM_204_89_ASIC[114] ls_en_asic_buf6 vdd vss net0232[6] / 
++ physpined_ND2D2BWP7T30P140
+Xi54<5> TSV_TM_204_89_ASIC[113] ls_en_asic_buf6 vdd vss net0232[5] / 
++ physpined_ND2D2BWP7T30P140
+Xi54<4> TSV_TM_204_89_ASIC[112] ls_en_asic_buf6 vdd vss net0232[4] / 
++ physpined_ND2D2BWP7T30P140
+Xi54<3> TSV_TM_204_89_ASIC[111] ls_en_asic_buf6 vdd vss net0232[3] / 
++ physpined_ND2D2BWP7T30P140
+Xi54<2> TSV_TM_204_89_ASIC[110] ls_en_asic_buf6 vdd vss net0232[2] / 
++ physpined_ND2D2BWP7T30P140
+Xi54<1> TSV_TM_204_89_ASIC[109] ls_en_asic_buf6 vdd vss net0232[1] / 
++ physpined_ND2D2BWP7T30P140
+Xi54<0> TSV_TM_204_89_ASIC[108] ls_en_asic_buf6 vdd vss net0232[0] / 
++ physpined_ND2D2BWP7T30P140
+Xi52<17> TSV_TM_204_89_ASIC[89] ls_en_asic_buf4 vdd vss net0235[17] / 
++ physpined_ND2D2BWP7T30P140
+Xi52<16> TSV_TM_204_89_ASIC[88] ls_en_asic_buf4 vdd vss net0235[16] / 
++ physpined_ND2D2BWP7T30P140
+Xi52<15> TSV_TM_204_89_ASIC[87] ls_en_asic_buf4 vdd vss net0235[15] / 
++ physpined_ND2D2BWP7T30P140
+Xi52<14> TSV_TM_204_89_ASIC[86] ls_en_asic_buf4 vdd vss net0235[14] / 
++ physpined_ND2D2BWP7T30P140
+Xi52<13> TSV_TM_204_89_ASIC[85] ls_en_asic_buf4 vdd vss net0235[13] / 
++ physpined_ND2D2BWP7T30P140
+Xi52<12> TSV_TM_204_89_ASIC[84] ls_en_asic_buf4 vdd vss net0235[12] / 
++ physpined_ND2D2BWP7T30P140
+Xi52<11> TSV_TM_204_89_ASIC[83] ls_en_asic_buf4 vdd vss net0235[11] / 
++ physpined_ND2D2BWP7T30P140
+Xi52<10> TSV_TM_204_89_ASIC[82] ls_en_asic_buf4 vdd vss net0235[10] / 
++ physpined_ND2D2BWP7T30P140
+Xi52<9> TSV_TM_204_89_ASIC[81] ls_en_asic_buf4 vdd vss net0235[9] / 
++ physpined_ND2D2BWP7T30P140
+Xi52<8> TSV_TM_204_89_ASIC[80] ls_en_asic_buf4 vdd vss net0235[8] / 
++ physpined_ND2D2BWP7T30P140
+Xi52<7> TSV_TM_204_89_ASIC[79] ls_en_asic_buf4 vdd vss net0235[7] / 
++ physpined_ND2D2BWP7T30P140
+Xi52<6> TSV_TM_204_89_ASIC[78] ls_en_asic_buf4 vdd vss net0235[6] / 
++ physpined_ND2D2BWP7T30P140
+Xi52<5> TSV_TM_204_89_ASIC[77] ls_en_asic_buf4 vdd vss net0235[5] / 
++ physpined_ND2D2BWP7T30P140
+Xi52<4> TSV_TM_204_89_ASIC[76] ls_en_asic_buf4 vdd vss net0235[4] / 
++ physpined_ND2D2BWP7T30P140
+Xi52<3> TSV_TM_204_89_ASIC[75] ls_en_asic_buf4 vdd vss net0235[3] / 
++ physpined_ND2D2BWP7T30P140
+Xi52<2> TSV_TM_204_89_ASIC[74] ls_en_asic_buf4 vdd vss net0235[2] / 
++ physpined_ND2D2BWP7T30P140
+Xi52<1> TSV_TM_204_89_ASIC[73] ls_en_asic_buf4 vdd vss net0235[1] / 
++ physpined_ND2D2BWP7T30P140
+Xi52<0> TSV_TM_204_89_ASIC[72] ls_en_asic_buf4 vdd vss net0235[0] / 
++ physpined_ND2D2BWP7T30P140
+Xi73<17> TSV_TM_428_333_ASIC[89] ls_en_asic_buf7 vdd vss net268[17] / 
++ physpined_ND2D2BWP7T30P140
+Xi73<16> TSV_TM_428_333_ASIC[88] ls_en_asic_buf7 vdd vss net268[16] / 
++ physpined_ND2D2BWP7T30P140
+Xi73<15> TSV_TM_428_333_ASIC[87] ls_en_asic_buf7 vdd vss net268[15] / 
++ physpined_ND2D2BWP7T30P140
+Xi73<14> TSV_TM_428_333_ASIC[86] ls_en_asic_buf7 vdd vss net268[14] / 
++ physpined_ND2D2BWP7T30P140
+Xi73<13> TSV_TM_428_333_ASIC[85] ls_en_asic_buf7 vdd vss net268[13] / 
++ physpined_ND2D2BWP7T30P140
+Xi73<12> TSV_TM_428_333_ASIC[84] ls_en_asic_buf7 vdd vss net268[12] / 
++ physpined_ND2D2BWP7T30P140
+Xi73<11> TSV_TM_428_333_ASIC[83] ls_en_asic_buf7 vdd vss net268[11] / 
++ physpined_ND2D2BWP7T30P140
+Xi73<10> TSV_TM_428_333_ASIC[82] ls_en_asic_buf7 vdd vss net268[10] / 
++ physpined_ND2D2BWP7T30P140
+Xi73<9> TSV_TM_428_333_ASIC[81] ls_en_asic_buf7 vdd vss net268[9] / 
++ physpined_ND2D2BWP7T30P140
+Xi73<8> TSV_TM_428_333_ASIC[80] ls_en_asic_buf7 vdd vss net268[8] / 
++ physpined_ND2D2BWP7T30P140
+Xi73<7> TSV_TM_428_333_ASIC[79] ls_en_asic_buf7 vdd vss net268[7] / 
++ physpined_ND2D2BWP7T30P140
+Xi73<6> TSV_TM_428_333_ASIC[78] ls_en_asic_buf7 vdd vss net268[6] / 
++ physpined_ND2D2BWP7T30P140
+Xi73<5> TSV_TM_428_333_ASIC[77] ls_en_asic_buf7 vdd vss net268[5] / 
++ physpined_ND2D2BWP7T30P140
+Xi73<4> TSV_TM_428_333_ASIC[76] ls_en_asic_buf7 vdd vss net268[4] / 
++ physpined_ND2D2BWP7T30P140
+Xi73<3> TSV_TM_428_333_ASIC[75] ls_en_asic_buf7 vdd vss net268[3] / 
++ physpined_ND2D2BWP7T30P140
+Xi73<2> TSV_TM_428_333_ASIC[74] ls_en_asic_buf7 vdd vss net268[2] / 
++ physpined_ND2D2BWP7T30P140
+Xi73<1> TSV_TM_428_333_ASIC[73] ls_en_asic_buf7 vdd vss net268[1] / 
++ physpined_ND2D2BWP7T30P140
+Xi73<0> TSV_TM_428_333_ASIC[72] ls_en_asic_buf7 vdd vss net268[0] / 
++ physpined_ND2D2BWP7T30P140
+Xi72<17> TSV_TM_428_333_ASIC[71] ls_en_asic_buf10 vdd vss net269[17] / 
++ physpined_ND2D2BWP7T30P140
+Xi72<16> TSV_TM_428_333_ASIC[70] ls_en_asic_buf10 vdd vss net269[16] / 
++ physpined_ND2D2BWP7T30P140
+Xi72<15> TSV_TM_428_333_ASIC[69] ls_en_asic_buf10 vdd vss net269[15] / 
++ physpined_ND2D2BWP7T30P140
+Xi72<14> TSV_TM_428_333_ASIC[68] ls_en_asic_buf10 vdd vss net269[14] / 
++ physpined_ND2D2BWP7T30P140
+Xi72<13> TSV_TM_428_333_ASIC[67] ls_en_asic_buf10 vdd vss net269[13] / 
++ physpined_ND2D2BWP7T30P140
+Xi72<12> TSV_TM_428_333_ASIC[66] ls_en_asic_buf10 vdd vss net269[12] / 
++ physpined_ND2D2BWP7T30P140
+Xi72<11> TSV_TM_428_333_ASIC[65] ls_en_asic_buf10 vdd vss net269[11] / 
++ physpined_ND2D2BWP7T30P140
+Xi72<10> TSV_TM_428_333_ASIC[64] ls_en_asic_buf10 vdd vss net269[10] / 
++ physpined_ND2D2BWP7T30P140
+Xi72<9> TSV_TM_428_333_ASIC[63] ls_en_asic_buf10 vdd vss net269[9] / 
++ physpined_ND2D2BWP7T30P140
+Xi72<8> TSV_TM_428_333_ASIC[62] ls_en_asic_buf10 vdd vss net269[8] / 
++ physpined_ND2D2BWP7T30P140
+Xi72<7> TSV_TM_428_333_ASIC[61] ls_en_asic_buf10 vdd vss net269[7] / 
++ physpined_ND2D2BWP7T30P140
+Xi72<6> TSV_TM_428_333_ASIC[60] ls_en_asic_buf10 vdd vss net269[6] / 
++ physpined_ND2D2BWP7T30P140
+Xi72<5> TSV_TM_428_333_ASIC[59] ls_en_asic_buf10 vdd vss net269[5] / 
++ physpined_ND2D2BWP7T30P140
+Xi72<4> TSV_TM_428_333_ASIC[58] ls_en_asic_buf10 vdd vss net269[4] / 
++ physpined_ND2D2BWP7T30P140
+Xi72<3> TSV_TM_428_333_ASIC[57] ls_en_asic_buf10 vdd vss net269[3] / 
++ physpined_ND2D2BWP7T30P140
+Xi72<2> TSV_TM_428_333_ASIC[56] ls_en_asic_buf10 vdd vss net269[2] / 
++ physpined_ND2D2BWP7T30P140
+Xi72<1> TSV_TM_428_333_ASIC[55] ls_en_asic_buf10 vdd vss net269[1] / 
++ physpined_ND2D2BWP7T30P140
+Xi72<0> TSV_TM_428_333_ASIC[54] ls_en_asic_buf10 vdd vss net269[0] / 
++ physpined_ND2D2BWP7T30P140
+Xi74<5> TSV_TM_428_333_ASIC[95] ls_en_asic_buf6 vdd vss net0227[5] / 
++ physpined_ND2D2BWP7T30P140
+Xi74<4> TSV_TM_428_333_ASIC[94] ls_en_asic_buf6 vdd vss net0227[4] / 
++ physpined_ND2D2BWP7T30P140
+Xi74<3> TSV_TM_428_333_ASIC[93] ls_en_asic_buf6 vdd vss net0227[3] / 
++ physpined_ND2D2BWP7T30P140
+Xi74<2> TSV_TM_428_333_ASIC[92] ls_en_asic_buf6 vdd vss net0227[2] / 
++ physpined_ND2D2BWP7T30P140
+Xi74<1> TSV_TM_428_333_ASIC[91] ls_en_asic_buf6 vdd vss net0227[1] / 
++ physpined_ND2D2BWP7T30P140
+Xi74<0> TSV_TM_428_333_ASIC[90] ls_en_asic_buf6 vdd vss net0227[0] / 
++ physpined_ND2D2BWP7T30P140
+Xi57<17> TSV_TM_428_333_ASIC[53] ls_en_asic_buf9 vdd vss net273[17] / 
++ physpined_ND2D2BWP7T30P140
+Xi57<16> TSV_TM_428_333_ASIC[52] ls_en_asic_buf9 vdd vss net273[16] / 
++ physpined_ND2D2BWP7T30P140
+Xi57<15> TSV_TM_428_333_ASIC[51] ls_en_asic_buf9 vdd vss net273[15] / 
++ physpined_ND2D2BWP7T30P140
+Xi57<14> TSV_TM_428_333_ASIC[50] ls_en_asic_buf9 vdd vss net273[14] / 
++ physpined_ND2D2BWP7T30P140
+Xi57<13> TSV_TM_428_333_ASIC[49] ls_en_asic_buf9 vdd vss net273[13] / 
++ physpined_ND2D2BWP7T30P140
+Xi57<12> TSV_TM_428_333_ASIC[48] ls_en_asic_buf9 vdd vss net273[12] / 
++ physpined_ND2D2BWP7T30P140
+Xi57<11> TSV_TM_428_333_ASIC[47] ls_en_asic_buf9 vdd vss net273[11] / 
++ physpined_ND2D2BWP7T30P140
+Xi57<10> TSV_TM_428_333_ASIC[46] ls_en_asic_buf9 vdd vss net273[10] / 
++ physpined_ND2D2BWP7T30P140
+Xi57<9> TSV_TM_428_333_ASIC[45] ls_en_asic_buf9 vdd vss net273[9] / 
++ physpined_ND2D2BWP7T30P140
+Xi57<8> TSV_TM_428_333_ASIC[44] ls_en_asic_buf9 vdd vss net273[8] / 
++ physpined_ND2D2BWP7T30P140
+Xi57<7> TSV_TM_428_333_ASIC[43] ls_en_asic_buf9 vdd vss net273[7] / 
++ physpined_ND2D2BWP7T30P140
+Xi57<6> TSV_TM_428_333_ASIC[42] ls_en_asic_buf9 vdd vss net273[6] / 
++ physpined_ND2D2BWP7T30P140
+Xi57<5> TSV_TM_428_333_ASIC[41] ls_en_asic_buf9 vdd vss net273[5] / 
++ physpined_ND2D2BWP7T30P140
+Xi57<4> TSV_TM_428_333_ASIC[40] ls_en_asic_buf9 vdd vss net273[4] / 
++ physpined_ND2D2BWP7T30P140
+Xi57<3> TSV_TM_428_333_ASIC[39] ls_en_asic_buf9 vdd vss net273[3] / 
++ physpined_ND2D2BWP7T30P140
+Xi57<2> TSV_TM_428_333_ASIC[38] ls_en_asic_buf9 vdd vss net273[2] / 
++ physpined_ND2D2BWP7T30P140
+Xi57<1> TSV_TM_428_333_ASIC[37] ls_en_asic_buf9 vdd vss net273[1] / 
++ physpined_ND2D2BWP7T30P140
+Xi57<0> TSV_TM_428_333_ASIC[36] ls_en_asic_buf9 vdd vss net273[0] / 
++ physpined_ND2D2BWP7T30P140
+Xi56<17> TSV_TM_428_333_ASIC[35] ls_en_asic_buf8 vdd vss net270[17] / 
++ physpined_ND2D2BWP7T30P140
+Xi56<16> TSV_TM_428_333_ASIC[34] ls_en_asic_buf8 vdd vss net270[16] / 
++ physpined_ND2D2BWP7T30P140
+Xi56<15> TSV_TM_428_333_ASIC[33] ls_en_asic_buf8 vdd vss net270[15] / 
++ physpined_ND2D2BWP7T30P140
+Xi56<14> TSV_TM_428_333_ASIC[32] ls_en_asic_buf8 vdd vss net270[14] / 
++ physpined_ND2D2BWP7T30P140
+Xi56<13> TSV_TM_428_333_ASIC[31] ls_en_asic_buf8 vdd vss net270[13] / 
++ physpined_ND2D2BWP7T30P140
+Xi56<12> TSV_TM_428_333_ASIC[30] ls_en_asic_buf8 vdd vss net270[12] / 
++ physpined_ND2D2BWP7T30P140
+Xi56<11> TSV_TM_428_333_ASIC[29] ls_en_asic_buf8 vdd vss net270[11] / 
++ physpined_ND2D2BWP7T30P140
+Xi56<10> TSV_TM_428_333_ASIC[28] ls_en_asic_buf8 vdd vss net270[10] / 
++ physpined_ND2D2BWP7T30P140
+Xi56<9> TSV_TM_428_333_ASIC[27] ls_en_asic_buf8 vdd vss net270[9] / 
++ physpined_ND2D2BWP7T30P140
+Xi56<8> TSV_TM_428_333_ASIC[26] ls_en_asic_buf8 vdd vss net270[8] / 
++ physpined_ND2D2BWP7T30P140
+Xi56<7> TSV_TM_428_333_ASIC[25] ls_en_asic_buf8 vdd vss net270[7] / 
++ physpined_ND2D2BWP7T30P140
+Xi56<6> TSV_TM_428_333_ASIC[24] ls_en_asic_buf8 vdd vss net270[6] / 
++ physpined_ND2D2BWP7T30P140
+Xi56<5> TSV_TM_428_333_ASIC[23] ls_en_asic_buf8 vdd vss net270[5] / 
++ physpined_ND2D2BWP7T30P140
+Xi56<4> TSV_TM_428_333_ASIC[22] ls_en_asic_buf8 vdd vss net270[4] / 
++ physpined_ND2D2BWP7T30P140
+Xi56<3> TSV_TM_428_333_ASIC[21] ls_en_asic_buf8 vdd vss net270[3] / 
++ physpined_ND2D2BWP7T30P140
+Xi56<2> TSV_TM_428_333_ASIC[20] ls_en_asic_buf8 vdd vss net270[2] / 
++ physpined_ND2D2BWP7T30P140
+Xi56<1> TSV_TM_428_333_ASIC[19] ls_en_asic_buf8 vdd vss net270[1] / 
++ physpined_ND2D2BWP7T30P140
+Xi56<0> TSV_TM_428_333_ASIC[18] ls_en_asic_buf8 vdd vss net270[0] / 
++ physpined_ND2D2BWP7T30P140
+Xi55<17> TSV_TM_428_333_ASIC[17] ls_en_asic_buf11 vdd vss net271[17] / 
++ physpined_ND2D2BWP7T30P140
+Xi55<16> TSV_TM_428_333_ASIC[16] ls_en_asic_buf11 vdd vss net271[16] / 
++ physpined_ND2D2BWP7T30P140
+Xi55<15> TSV_TM_428_333_ASIC[15] ls_en_asic_buf11 vdd vss net271[15] / 
++ physpined_ND2D2BWP7T30P140
+Xi55<14> TSV_TM_428_333_ASIC[14] ls_en_asic_buf11 vdd vss net271[14] / 
++ physpined_ND2D2BWP7T30P140
+Xi55<13> TSV_TM_428_333_ASIC[13] ls_en_asic_buf11 vdd vss net271[13] / 
++ physpined_ND2D2BWP7T30P140
+Xi55<12> TSV_TM_428_333_ASIC[12] ls_en_asic_buf11 vdd vss net271[12] / 
++ physpined_ND2D2BWP7T30P140
+Xi55<11> TSV_TM_428_333_ASIC[11] ls_en_asic_buf11 vdd vss net271[11] / 
++ physpined_ND2D2BWP7T30P140
+Xi55<10> TSV_TM_428_333_ASIC[10] ls_en_asic_buf11 vdd vss net271[10] / 
++ physpined_ND2D2BWP7T30P140
+Xi55<9> TSV_TM_428_333_ASIC[9] ls_en_asic_buf11 vdd vss net271[9] / 
++ physpined_ND2D2BWP7T30P140
+Xi55<8> TSV_TM_428_333_ASIC[8] ls_en_asic_buf11 vdd vss net271[8] / 
++ physpined_ND2D2BWP7T30P140
+Xi55<7> TSV_TM_428_333_ASIC[7] ls_en_asic_buf11 vdd vss net271[7] / 
++ physpined_ND2D2BWP7T30P140
+Xi55<6> TSV_TM_428_333_ASIC[6] ls_en_asic_buf11 vdd vss net271[6] / 
++ physpined_ND2D2BWP7T30P140
+Xi55<5> TSV_TM_428_333_ASIC[5] ls_en_asic_buf11 vdd vss net271[5] / 
++ physpined_ND2D2BWP7T30P140
+Xi55<4> TSV_TM_428_333_ASIC[4] ls_en_asic_buf11 vdd vss net271[4] / 
++ physpined_ND2D2BWP7T30P140
+Xi55<3> TSV_TM_428_333_ASIC[3] ls_en_asic_buf11 vdd vss net271[3] / 
++ physpined_ND2D2BWP7T30P140
+Xi55<2> TSV_TM_428_333_ASIC[2] ls_en_asic_buf11 vdd vss net271[2] / 
++ physpined_ND2D2BWP7T30P140
+Xi55<1> TSV_TM_428_333_ASIC[1] ls_en_asic_buf11 vdd vss net271[1] / 
++ physpined_ND2D2BWP7T30P140
+Xi55<0> TSV_TM_428_333_ASIC[0] ls_en_asic_buf11 vdd vss net271[0] / 
++ physpined_ND2D2BWP7T30P140
+Xi53<17> TSV_TM_204_89_ASIC[107] ls_en_asic_buf5 vdd vss net274[17] / 
++ physpined_ND2D2BWP7T30P140
+Xi53<16> TSV_TM_204_89_ASIC[106] ls_en_asic_buf5 vdd vss net274[16] / 
++ physpined_ND2D2BWP7T30P140
+Xi53<15> TSV_TM_204_89_ASIC[105] ls_en_asic_buf5 vdd vss net274[15] / 
++ physpined_ND2D2BWP7T30P140
+Xi53<14> TSV_TM_204_89_ASIC[104] ls_en_asic_buf5 vdd vss net274[14] / 
++ physpined_ND2D2BWP7T30P140
+Xi53<13> TSV_TM_204_89_ASIC[103] ls_en_asic_buf5 vdd vss net274[13] / 
++ physpined_ND2D2BWP7T30P140
+Xi53<12> TSV_TM_204_89_ASIC[102] ls_en_asic_buf5 vdd vss net274[12] / 
++ physpined_ND2D2BWP7T30P140
+Xi53<11> TSV_TM_204_89_ASIC[101] ls_en_asic_buf5 vdd vss net274[11] / 
++ physpined_ND2D2BWP7T30P140
+Xi53<10> TSV_TM_204_89_ASIC[100] ls_en_asic_buf5 vdd vss net274[10] / 
++ physpined_ND2D2BWP7T30P140
+Xi53<9> TSV_TM_204_89_ASIC[99] ls_en_asic_buf5 vdd vss net274[9] / 
++ physpined_ND2D2BWP7T30P140
+Xi53<8> TSV_TM_204_89_ASIC[98] ls_en_asic_buf5 vdd vss net274[8] / 
++ physpined_ND2D2BWP7T30P140
+Xi53<7> TSV_TM_204_89_ASIC[97] ls_en_asic_buf5 vdd vss net274[7] / 
++ physpined_ND2D2BWP7T30P140
+Xi53<6> TSV_TM_204_89_ASIC[96] ls_en_asic_buf5 vdd vss net274[6] / 
++ physpined_ND2D2BWP7T30P140
+Xi53<5> TSV_TM_204_89_ASIC[95] ls_en_asic_buf5 vdd vss net274[5] / 
++ physpined_ND2D2BWP7T30P140
+Xi53<4> TSV_TM_204_89_ASIC[94] ls_en_asic_buf5 vdd vss net274[4] / 
++ physpined_ND2D2BWP7T30P140
+Xi53<3> TSV_TM_204_89_ASIC[93] ls_en_asic_buf5 vdd vss net274[3] / 
++ physpined_ND2D2BWP7T30P140
+Xi53<2> TSV_TM_204_89_ASIC[92] ls_en_asic_buf5 vdd vss net274[2] / 
++ physpined_ND2D2BWP7T30P140
+Xi53<1> TSV_TM_204_89_ASIC[91] ls_en_asic_buf5 vdd vss net274[1] / 
++ physpined_ND2D2BWP7T30P140
+Xi53<0> TSV_TM_204_89_ASIC[90] ls_en_asic_buf5 vdd vss net274[0] / 
++ physpined_ND2D2BWP7T30P140
+Xi50<17> TSV_TM_204_89_ASIC[71] ls_en_asic_buf3 vdd vss net276[17] / 
++ physpined_ND2D2BWP7T30P140
+Xi50<16> TSV_TM_204_89_ASIC[70] ls_en_asic_buf3 vdd vss net276[16] / 
++ physpined_ND2D2BWP7T30P140
+Xi50<15> TSV_TM_204_89_ASIC[69] ls_en_asic_buf3 vdd vss net276[15] / 
++ physpined_ND2D2BWP7T30P140
+Xi50<14> TSV_TM_204_89_ASIC[68] ls_en_asic_buf3 vdd vss net276[14] / 
++ physpined_ND2D2BWP7T30P140
+Xi50<13> TSV_TM_204_89_ASIC[67] ls_en_asic_buf3 vdd vss net276[13] / 
++ physpined_ND2D2BWP7T30P140
+Xi50<12> TSV_TM_204_89_ASIC[66] ls_en_asic_buf3 vdd vss net276[12] / 
++ physpined_ND2D2BWP7T30P140
+Xi50<11> TSV_TM_204_89_ASIC[65] ls_en_asic_buf3 vdd vss net276[11] / 
++ physpined_ND2D2BWP7T30P140
+Xi50<10> TSV_TM_204_89_ASIC[64] ls_en_asic_buf3 vdd vss net276[10] / 
++ physpined_ND2D2BWP7T30P140
+Xi50<9> TSV_TM_204_89_ASIC[63] ls_en_asic_buf3 vdd vss net276[9] / 
++ physpined_ND2D2BWP7T30P140
+Xi50<8> TSV_TM_204_89_ASIC[62] ls_en_asic_buf3 vdd vss net276[8] / 
++ physpined_ND2D2BWP7T30P140
+Xi50<7> TSV_TM_204_89_ASIC[61] ls_en_asic_buf3 vdd vss net276[7] / 
++ physpined_ND2D2BWP7T30P140
+Xi50<6> TSV_TM_204_89_ASIC[60] ls_en_asic_buf3 vdd vss net276[6] / 
++ physpined_ND2D2BWP7T30P140
+Xi50<5> TSV_TM_204_89_ASIC[59] ls_en_asic_buf3 vdd vss net276[5] / 
++ physpined_ND2D2BWP7T30P140
+Xi50<4> TSV_TM_204_89_ASIC[58] ls_en_asic_buf3 vdd vss net276[4] / 
++ physpined_ND2D2BWP7T30P140
+Xi50<3> TSV_TM_204_89_ASIC[57] ls_en_asic_buf3 vdd vss net276[3] / 
++ physpined_ND2D2BWP7T30P140
+Xi50<2> TSV_TM_204_89_ASIC[56] ls_en_asic_buf3 vdd vss net276[2] / 
++ physpined_ND2D2BWP7T30P140
+Xi50<1> TSV_TM_204_89_ASIC[55] ls_en_asic_buf3 vdd vss net276[1] / 
++ physpined_ND2D2BWP7T30P140
+Xi50<0> TSV_TM_204_89_ASIC[54] ls_en_asic_buf3 vdd vss net276[0] / 
++ physpined_ND2D2BWP7T30P140
+Xi49<17> TSV_TM_204_89_ASIC[53] ls_en_asic_buf2 vdd vss net277[17] / 
++ physpined_ND2D2BWP7T30P140
+Xi49<16> TSV_TM_204_89_ASIC[52] ls_en_asic_buf2 vdd vss net277[16] / 
++ physpined_ND2D2BWP7T30P140
+Xi49<15> TSV_TM_204_89_ASIC[51] ls_en_asic_buf2 vdd vss net277[15] / 
++ physpined_ND2D2BWP7T30P140
+Xi49<14> TSV_TM_204_89_ASIC[50] ls_en_asic_buf2 vdd vss net277[14] / 
++ physpined_ND2D2BWP7T30P140
+Xi49<13> TSV_TM_204_89_ASIC[49] ls_en_asic_buf2 vdd vss net277[13] / 
++ physpined_ND2D2BWP7T30P140
+Xi49<12> TSV_TM_204_89_ASIC[48] ls_en_asic_buf2 vdd vss net277[12] / 
++ physpined_ND2D2BWP7T30P140
+Xi49<11> TSV_TM_204_89_ASIC[47] ls_en_asic_buf2 vdd vss net277[11] / 
++ physpined_ND2D2BWP7T30P140
+Xi49<10> TSV_TM_204_89_ASIC[46] ls_en_asic_buf2 vdd vss net277[10] / 
++ physpined_ND2D2BWP7T30P140
+Xi49<9> TSV_TM_204_89_ASIC[45] ls_en_asic_buf2 vdd vss net277[9] / 
++ physpined_ND2D2BWP7T30P140
+Xi49<8> TSV_TM_204_89_ASIC[44] ls_en_asic_buf2 vdd vss net277[8] / 
++ physpined_ND2D2BWP7T30P140
+Xi49<7> TSV_TM_204_89_ASIC[43] ls_en_asic_buf2 vdd vss net277[7] / 
++ physpined_ND2D2BWP7T30P140
+Xi49<6> TSV_TM_204_89_ASIC[42] ls_en_asic_buf2 vdd vss net277[6] / 
++ physpined_ND2D2BWP7T30P140
+Xi49<5> TSV_TM_204_89_ASIC[41] ls_en_asic_buf2 vdd vss net277[5] / 
++ physpined_ND2D2BWP7T30P140
+Xi49<4> TSV_TM_204_89_ASIC[40] ls_en_asic_buf2 vdd vss net277[4] / 
++ physpined_ND2D2BWP7T30P140
+Xi49<3> TSV_TM_204_89_ASIC[39] ls_en_asic_buf2 vdd vss net277[3] / 
++ physpined_ND2D2BWP7T30P140
+Xi49<2> TSV_TM_204_89_ASIC[38] ls_en_asic_buf2 vdd vss net277[2] / 
++ physpined_ND2D2BWP7T30P140
+Xi49<1> TSV_TM_204_89_ASIC[37] ls_en_asic_buf2 vdd vss net277[1] / 
++ physpined_ND2D2BWP7T30P140
+Xi49<0> TSV_TM_204_89_ASIC[36] ls_en_asic_buf2 vdd vss net277[0] / 
++ physpined_ND2D2BWP7T30P140
+Xi47<17> TSV_TM_204_89_ASIC[35] ls_en_asic_buf1 vdd vss net278[17] / 
++ physpined_ND2D2BWP7T30P140
+Xi47<16> TSV_TM_204_89_ASIC[34] ls_en_asic_buf1 vdd vss net278[16] / 
++ physpined_ND2D2BWP7T30P140
+Xi47<15> TSV_TM_204_89_ASIC[33] ls_en_asic_buf1 vdd vss net278[15] / 
++ physpined_ND2D2BWP7T30P140
+Xi47<14> TSV_TM_204_89_ASIC[32] ls_en_asic_buf1 vdd vss net278[14] / 
++ physpined_ND2D2BWP7T30P140
+Xi47<13> TSV_TM_204_89_ASIC[31] ls_en_asic_buf1 vdd vss net278[13] / 
++ physpined_ND2D2BWP7T30P140
+Xi47<12> TSV_TM_204_89_ASIC[30] ls_en_asic_buf1 vdd vss net278[12] / 
++ physpined_ND2D2BWP7T30P140
+Xi47<11> TSV_TM_204_89_ASIC[29] ls_en_asic_buf1 vdd vss net278[11] / 
++ physpined_ND2D2BWP7T30P140
+Xi47<10> TSV_TM_204_89_ASIC[28] ls_en_asic_buf1 vdd vss net278[10] / 
++ physpined_ND2D2BWP7T30P140
+Xi47<9> TSV_TM_204_89_ASIC[27] ls_en_asic_buf1 vdd vss net278[9] / 
++ physpined_ND2D2BWP7T30P140
+Xi47<8> TSV_TM_204_89_ASIC[26] ls_en_asic_buf1 vdd vss net278[8] / 
++ physpined_ND2D2BWP7T30P140
+Xi47<7> TSV_TM_204_89_ASIC[25] ls_en_asic_buf1 vdd vss net278[7] / 
++ physpined_ND2D2BWP7T30P140
+Xi47<6> TSV_TM_204_89_ASIC[24] ls_en_asic_buf1 vdd vss net278[6] / 
++ physpined_ND2D2BWP7T30P140
+Xi47<5> TSV_TM_204_89_ASIC[23] ls_en_asic_buf1 vdd vss net278[5] / 
++ physpined_ND2D2BWP7T30P140
+Xi47<4> TSV_TM_204_89_ASIC[22] ls_en_asic_buf1 vdd vss net278[4] / 
++ physpined_ND2D2BWP7T30P140
+Xi47<3> TSV_TM_204_89_ASIC[21] ls_en_asic_buf1 vdd vss net278[3] / 
++ physpined_ND2D2BWP7T30P140
+Xi47<2> TSV_TM_204_89_ASIC[20] ls_en_asic_buf1 vdd vss net278[2] / 
++ physpined_ND2D2BWP7T30P140
+Xi47<1> TSV_TM_204_89_ASIC[19] ls_en_asic_buf1 vdd vss net278[1] / 
++ physpined_ND2D2BWP7T30P140
+Xi47<0> TSV_TM_204_89_ASIC[18] ls_en_asic_buf1 vdd vss net278[0] / 
++ physpined_ND2D2BWP7T30P140
+Xi0<17> TSV_TM_204_89_ASIC[17] ls_en_asic_buf0 vdd vss net279[17] / 
++ physpined_ND2D2BWP7T30P140
+Xi0<16> TSV_TM_204_89_ASIC[16] ls_en_asic_buf0 vdd vss net279[16] / 
++ physpined_ND2D2BWP7T30P140
+Xi0<15> TSV_TM_204_89_ASIC[15] ls_en_asic_buf0 vdd vss net279[15] / 
++ physpined_ND2D2BWP7T30P140
+Xi0<14> TSV_TM_204_89_ASIC[14] ls_en_asic_buf0 vdd vss net279[14] / 
++ physpined_ND2D2BWP7T30P140
+Xi0<13> TSV_TM_204_89_ASIC[13] ls_en_asic_buf0 vdd vss net279[13] / 
++ physpined_ND2D2BWP7T30P140
+Xi0<12> TSV_TM_204_89_ASIC[12] ls_en_asic_buf0 vdd vss net279[12] / 
++ physpined_ND2D2BWP7T30P140
+Xi0<11> TSV_TM_204_89_ASIC[11] ls_en_asic_buf0 vdd vss net279[11] / 
++ physpined_ND2D2BWP7T30P140
+Xi0<10> TSV_TM_204_89_ASIC[10] ls_en_asic_buf0 vdd vss net279[10] / 
++ physpined_ND2D2BWP7T30P140
+Xi0<9> TSV_TM_204_89_ASIC[9] ls_en_asic_buf0 vdd vss net279[9] / 
++ physpined_ND2D2BWP7T30P140
+Xi0<8> TSV_TM_204_89_ASIC[8] ls_en_asic_buf0 vdd vss net279[8] / 
++ physpined_ND2D2BWP7T30P140
+Xi0<7> TSV_TM_204_89_ASIC[7] ls_en_asic_buf0 vdd vss net279[7] / 
++ physpined_ND2D2BWP7T30P140
+Xi0<6> TSV_TM_204_89_ASIC[6] ls_en_asic_buf0 vdd vss net279[6] / 
++ physpined_ND2D2BWP7T30P140
+Xi0<5> TSV_TM_204_89_ASIC[5] ls_en_asic_buf0 vdd vss net279[5] / 
++ physpined_ND2D2BWP7T30P140
+Xi0<4> TSV_TM_204_89_ASIC[4] ls_en_asic_buf0 vdd vss net279[4] / 
++ physpined_ND2D2BWP7T30P140
+Xi0<3> TSV_TM_204_89_ASIC[3] ls_en_asic_buf0 vdd vss net279[3] / 
++ physpined_ND2D2BWP7T30P140
+Xi0<2> TSV_TM_204_89_ASIC[2] ls_en_asic_buf0 vdd vss net279[2] / 
++ physpined_ND2D2BWP7T30P140
+Xi0<1> TSV_TM_204_89_ASIC[1] ls_en_asic_buf0 vdd vss net279[1] / 
++ physpined_ND2D2BWP7T30P140
+Xi0<0> TSV_TM_204_89_ASIC[0] ls_en_asic_buf0 vdd vss net279[0] / 
++ physpined_ND2D2BWP7T30P140
+Xi58<17> net0235[17] vdd vss net0248[17] / physpined_INVD2BWP7T30P140
+Xi58<16> net0235[16] vdd vss net0248[16] / physpined_INVD2BWP7T30P140
+Xi58<15> net0235[15] vdd vss net0248[15] / physpined_INVD2BWP7T30P140
+Xi58<14> net0235[14] vdd vss net0248[14] / physpined_INVD2BWP7T30P140
+Xi58<13> net0235[13] vdd vss net0248[13] / physpined_INVD2BWP7T30P140
+Xi58<12> net0235[12] vdd vss net0248[12] / physpined_INVD2BWP7T30P140
+Xi58<11> net0235[11] vdd vss net0248[11] / physpined_INVD2BWP7T30P140
+Xi58<10> net0235[10] vdd vss net0248[10] / physpined_INVD2BWP7T30P140
+Xi58<9> net0235[9] vdd vss net0248[9] / physpined_INVD2BWP7T30P140
+Xi58<8> net0235[8] vdd vss net0248[8] / physpined_INVD2BWP7T30P140
+Xi58<7> net0235[7] vdd vss net0248[7] / physpined_INVD2BWP7T30P140
+Xi58<6> net0235[6] vdd vss net0248[6] / physpined_INVD2BWP7T30P140
+Xi58<5> net0235[5] vdd vss net0248[5] / physpined_INVD2BWP7T30P140
+Xi58<4> net0235[4] vdd vss net0248[4] / physpined_INVD2BWP7T30P140
+Xi58<3> net0235[3] vdd vss net0248[3] / physpined_INVD2BWP7T30P140
+Xi58<2> net0235[2] vdd vss net0248[2] / physpined_INVD2BWP7T30P140
+Xi58<1> net0235[1] vdd vss net0248[1] / physpined_INVD2BWP7T30P140
+Xi58<0> net0235[0] vdd vss net0248[0] / physpined_INVD2BWP7T30P140
+Xi77<17> net268[17] vdd vss net281[17] / physpined_INVD2BWP7T30P140
+Xi77<16> net268[16] vdd vss net281[16] / physpined_INVD2BWP7T30P140
+Xi77<15> net268[15] vdd vss net281[15] / physpined_INVD2BWP7T30P140
+Xi77<14> net268[14] vdd vss net281[14] / physpined_INVD2BWP7T30P140
+Xi77<13> net268[13] vdd vss net281[13] / physpined_INVD2BWP7T30P140
+Xi77<12> net268[12] vdd vss net281[12] / physpined_INVD2BWP7T30P140
+Xi77<11> net268[11] vdd vss net281[11] / physpined_INVD2BWP7T30P140
+Xi77<10> net268[10] vdd vss net281[10] / physpined_INVD2BWP7T30P140
+Xi77<9> net268[9] vdd vss net281[9] / physpined_INVD2BWP7T30P140
+Xi77<8> net268[8] vdd vss net281[8] / physpined_INVD2BWP7T30P140
+Xi77<7> net268[7] vdd vss net281[7] / physpined_INVD2BWP7T30P140
+Xi77<6> net268[6] vdd vss net281[6] / physpined_INVD2BWP7T30P140
+Xi77<5> net268[5] vdd vss net281[5] / physpined_INVD2BWP7T30P140
+Xi77<4> net268[4] vdd vss net281[4] / physpined_INVD2BWP7T30P140
+Xi77<3> net268[3] vdd vss net281[3] / physpined_INVD2BWP7T30P140
+Xi77<2> net268[2] vdd vss net281[2] / physpined_INVD2BWP7T30P140
+Xi77<1> net268[1] vdd vss net281[1] / physpined_INVD2BWP7T30P140
+Xi77<0> net268[0] vdd vss net281[0] / physpined_INVD2BWP7T30P140
+Xi76<17> net269[17] vdd vss net282[17] / physpined_INVD2BWP7T30P140
+Xi76<16> net269[16] vdd vss net282[16] / physpined_INVD2BWP7T30P140
+Xi76<15> net269[15] vdd vss net282[15] / physpined_INVD2BWP7T30P140
+Xi76<14> net269[14] vdd vss net282[14] / physpined_INVD2BWP7T30P140
+Xi76<13> net269[13] vdd vss net282[13] / physpined_INVD2BWP7T30P140
+Xi76<12> net269[12] vdd vss net282[12] / physpined_INVD2BWP7T30P140
+Xi76<11> net269[11] vdd vss net282[11] / physpined_INVD2BWP7T30P140
+Xi76<10> net269[10] vdd vss net282[10] / physpined_INVD2BWP7T30P140
+Xi76<9> net269[9] vdd vss net282[9] / physpined_INVD2BWP7T30P140
+Xi76<8> net269[8] vdd vss net282[8] / physpined_INVD2BWP7T30P140
+Xi76<7> net269[7] vdd vss net282[7] / physpined_INVD2BWP7T30P140
+Xi76<6> net269[6] vdd vss net282[6] / physpined_INVD2BWP7T30P140
+Xi76<5> net269[5] vdd vss net282[5] / physpined_INVD2BWP7T30P140
+Xi76<4> net269[4] vdd vss net282[4] / physpined_INVD2BWP7T30P140
+Xi76<3> net269[3] vdd vss net282[3] / physpined_INVD2BWP7T30P140
+Xi76<2> net269[2] vdd vss net282[2] / physpined_INVD2BWP7T30P140
+Xi76<1> net269[1] vdd vss net282[1] / physpined_INVD2BWP7T30P140
+Xi76<0> net269[0] vdd vss net282[0] / physpined_INVD2BWP7T30P140
+Xi78<5> net0227[5] vdd vss net0240[5] / physpined_INVD2BWP7T30P140
+Xi78<4> net0227[4] vdd vss net0240[4] / physpined_INVD2BWP7T30P140
+Xi78<3> net0227[3] vdd vss net0240[3] / physpined_INVD2BWP7T30P140
+Xi78<2> net0227[2] vdd vss net0240[2] / physpined_INVD2BWP7T30P140
+Xi78<1> net0227[1] vdd vss net0240[1] / physpined_INVD2BWP7T30P140
+Xi78<0> net0227[0] vdd vss net0240[0] / physpined_INVD2BWP7T30P140
+Xi63<17> net273[17] vdd vss net286[17] / physpined_INVD2BWP7T30P140
+Xi63<16> net273[16] vdd vss net286[16] / physpined_INVD2BWP7T30P140
+Xi63<15> net273[15] vdd vss net286[15] / physpined_INVD2BWP7T30P140
+Xi63<14> net273[14] vdd vss net286[14] / physpined_INVD2BWP7T30P140
+Xi63<13> net273[13] vdd vss net286[13] / physpined_INVD2BWP7T30P140
+Xi63<12> net273[12] vdd vss net286[12] / physpined_INVD2BWP7T30P140
+Xi63<11> net273[11] vdd vss net286[11] / physpined_INVD2BWP7T30P140
+Xi63<10> net273[10] vdd vss net286[10] / physpined_INVD2BWP7T30P140
+Xi63<9> net273[9] vdd vss net286[9] / physpined_INVD2BWP7T30P140
+Xi63<8> net273[8] vdd vss net286[8] / physpined_INVD2BWP7T30P140
+Xi63<7> net273[7] vdd vss net286[7] / physpined_INVD2BWP7T30P140
+Xi63<6> net273[6] vdd vss net286[6] / physpined_INVD2BWP7T30P140
+Xi63<5> net273[5] vdd vss net286[5] / physpined_INVD2BWP7T30P140
+Xi63<4> net273[4] vdd vss net286[4] / physpined_INVD2BWP7T30P140
+Xi63<3> net273[3] vdd vss net286[3] / physpined_INVD2BWP7T30P140
+Xi63<2> net273[2] vdd vss net286[2] / physpined_INVD2BWP7T30P140
+Xi63<1> net273[1] vdd vss net286[1] / physpined_INVD2BWP7T30P140
+Xi63<0> net273[0] vdd vss net286[0] / physpined_INVD2BWP7T30P140
+Xi62<17> net270[17] vdd vss net283[17] / physpined_INVD2BWP7T30P140
+Xi62<16> net270[16] vdd vss net283[16] / physpined_INVD2BWP7T30P140
+Xi62<15> net270[15] vdd vss net283[15] / physpined_INVD2BWP7T30P140
+Xi62<14> net270[14] vdd vss net283[14] / physpined_INVD2BWP7T30P140
+Xi62<13> net270[13] vdd vss net283[13] / physpined_INVD2BWP7T30P140
+Xi62<12> net270[12] vdd vss net283[12] / physpined_INVD2BWP7T30P140
+Xi62<11> net270[11] vdd vss net283[11] / physpined_INVD2BWP7T30P140
+Xi62<10> net270[10] vdd vss net283[10] / physpined_INVD2BWP7T30P140
+Xi62<9> net270[9] vdd vss net283[9] / physpined_INVD2BWP7T30P140
+Xi62<8> net270[8] vdd vss net283[8] / physpined_INVD2BWP7T30P140
+Xi62<7> net270[7] vdd vss net283[7] / physpined_INVD2BWP7T30P140
+Xi62<6> net270[6] vdd vss net283[6] / physpined_INVD2BWP7T30P140
+Xi62<5> net270[5] vdd vss net283[5] / physpined_INVD2BWP7T30P140
+Xi62<4> net270[4] vdd vss net283[4] / physpined_INVD2BWP7T30P140
+Xi62<3> net270[3] vdd vss net283[3] / physpined_INVD2BWP7T30P140
+Xi62<2> net270[2] vdd vss net283[2] / physpined_INVD2BWP7T30P140
+Xi62<1> net270[1] vdd vss net283[1] / physpined_INVD2BWP7T30P140
+Xi62<0> net270[0] vdd vss net283[0] / physpined_INVD2BWP7T30P140
+Xi61<17> net271[17] vdd vss net284[17] / physpined_INVD2BWP7T30P140
+Xi61<16> net271[16] vdd vss net284[16] / physpined_INVD2BWP7T30P140
+Xi61<15> net271[15] vdd vss net284[15] / physpined_INVD2BWP7T30P140
+Xi61<14> net271[14] vdd vss net284[14] / physpined_INVD2BWP7T30P140
+Xi61<13> net271[13] vdd vss net284[13] / physpined_INVD2BWP7T30P140
+Xi61<12> net271[12] vdd vss net284[12] / physpined_INVD2BWP7T30P140
+Xi61<11> net271[11] vdd vss net284[11] / physpined_INVD2BWP7T30P140
+Xi61<10> net271[10] vdd vss net284[10] / physpined_INVD2BWP7T30P140
+Xi61<9> net271[9] vdd vss net284[9] / physpined_INVD2BWP7T30P140
+Xi61<8> net271[8] vdd vss net284[8] / physpined_INVD2BWP7T30P140
+Xi61<7> net271[7] vdd vss net284[7] / physpined_INVD2BWP7T30P140
+Xi61<6> net271[6] vdd vss net284[6] / physpined_INVD2BWP7T30P140
+Xi61<5> net271[5] vdd vss net284[5] / physpined_INVD2BWP7T30P140
+Xi61<4> net271[4] vdd vss net284[4] / physpined_INVD2BWP7T30P140
+Xi61<3> net271[3] vdd vss net284[3] / physpined_INVD2BWP7T30P140
+Xi61<2> net271[2] vdd vss net284[2] / physpined_INVD2BWP7T30P140
+Xi61<1> net271[1] vdd vss net284[1] / physpined_INVD2BWP7T30P140
+Xi61<0> net271[0] vdd vss net284[0] / physpined_INVD2BWP7T30P140
+Xi59<17> net274[17] vdd vss net287[17] / physpined_INVD2BWP7T30P140
+Xi59<16> net274[16] vdd vss net287[16] / physpined_INVD2BWP7T30P140
+Xi59<15> net274[15] vdd vss net287[15] / physpined_INVD2BWP7T30P140
+Xi59<14> net274[14] vdd vss net287[14] / physpined_INVD2BWP7T30P140
+Xi59<13> net274[13] vdd vss net287[13] / physpined_INVD2BWP7T30P140
+Xi59<12> net274[12] vdd vss net287[12] / physpined_INVD2BWP7T30P140
+Xi59<11> net274[11] vdd vss net287[11] / physpined_INVD2BWP7T30P140
+Xi59<10> net274[10] vdd vss net287[10] / physpined_INVD2BWP7T30P140
+Xi59<9> net274[9] vdd vss net287[9] / physpined_INVD2BWP7T30P140
+Xi59<8> net274[8] vdd vss net287[8] / physpined_INVD2BWP7T30P140
+Xi59<7> net274[7] vdd vss net287[7] / physpined_INVD2BWP7T30P140
+Xi59<6> net274[6] vdd vss net287[6] / physpined_INVD2BWP7T30P140
+Xi59<5> net274[5] vdd vss net287[5] / physpined_INVD2BWP7T30P140
+Xi59<4> net274[4] vdd vss net287[4] / physpined_INVD2BWP7T30P140
+Xi59<3> net274[3] vdd vss net287[3] / physpined_INVD2BWP7T30P140
+Xi59<2> net274[2] vdd vss net287[2] / physpined_INVD2BWP7T30P140
+Xi59<1> net274[1] vdd vss net287[1] / physpined_INVD2BWP7T30P140
+Xi59<0> net274[0] vdd vss net287[0] / physpined_INVD2BWP7T30P140
+Xi60<7> net0232[7] vdd vss net0245[7] / physpined_INVD2BWP7T30P140
+Xi60<6> net0232[6] vdd vss net0245[6] / physpined_INVD2BWP7T30P140
+Xi60<5> net0232[5] vdd vss net0245[5] / physpined_INVD2BWP7T30P140
+Xi60<4> net0232[4] vdd vss net0245[4] / physpined_INVD2BWP7T30P140
+Xi60<3> net0232[3] vdd vss net0245[3] / physpined_INVD2BWP7T30P140
+Xi60<2> net0232[2] vdd vss net0245[2] / physpined_INVD2BWP7T30P140
+Xi60<1> net0232[1] vdd vss net0245[1] / physpined_INVD2BWP7T30P140
+Xi60<0> net0232[0] vdd vss net0245[0] / physpined_INVD2BWP7T30P140
+Xi51<17> net276[17] vdd vss net289[17] / physpined_INVD2BWP7T30P140
+Xi51<16> net276[16] vdd vss net289[16] / physpined_INVD2BWP7T30P140
+Xi51<15> net276[15] vdd vss net289[15] / physpined_INVD2BWP7T30P140
+Xi51<14> net276[14] vdd vss net289[14] / physpined_INVD2BWP7T30P140
+Xi51<13> net276[13] vdd vss net289[13] / physpined_INVD2BWP7T30P140
+Xi51<12> net276[12] vdd vss net289[12] / physpined_INVD2BWP7T30P140
+Xi51<11> net276[11] vdd vss net289[11] / physpined_INVD2BWP7T30P140
+Xi51<10> net276[10] vdd vss net289[10] / physpined_INVD2BWP7T30P140
+Xi51<9> net276[9] vdd vss net289[9] / physpined_INVD2BWP7T30P140
+Xi51<8> net276[8] vdd vss net289[8] / physpined_INVD2BWP7T30P140
+Xi51<7> net276[7] vdd vss net289[7] / physpined_INVD2BWP7T30P140
+Xi51<6> net276[6] vdd vss net289[6] / physpined_INVD2BWP7T30P140
+Xi51<5> net276[5] vdd vss net289[5] / physpined_INVD2BWP7T30P140
+Xi51<4> net276[4] vdd vss net289[4] / physpined_INVD2BWP7T30P140
+Xi51<3> net276[3] vdd vss net289[3] / physpined_INVD2BWP7T30P140
+Xi51<2> net276[2] vdd vss net289[2] / physpined_INVD2BWP7T30P140
+Xi51<1> net276[1] vdd vss net289[1] / physpined_INVD2BWP7T30P140
+Xi51<0> net276[0] vdd vss net289[0] / physpined_INVD2BWP7T30P140
+Xi46<17> net278[17] vdd vss net291[17] / physpined_INVD2BWP7T30P140
+Xi46<16> net278[16] vdd vss net291[16] / physpined_INVD2BWP7T30P140
+Xi46<15> net278[15] vdd vss net291[15] / physpined_INVD2BWP7T30P140
+Xi46<14> net278[14] vdd vss net291[14] / physpined_INVD2BWP7T30P140
+Xi46<13> net278[13] vdd vss net291[13] / physpined_INVD2BWP7T30P140
+Xi46<12> net278[12] vdd vss net291[12] / physpined_INVD2BWP7T30P140
+Xi46<11> net278[11] vdd vss net291[11] / physpined_INVD2BWP7T30P140
+Xi46<10> net278[10] vdd vss net291[10] / physpined_INVD2BWP7T30P140
+Xi46<9> net278[9] vdd vss net291[9] / physpined_INVD2BWP7T30P140
+Xi46<8> net278[8] vdd vss net291[8] / physpined_INVD2BWP7T30P140
+Xi46<7> net278[7] vdd vss net291[7] / physpined_INVD2BWP7T30P140
+Xi46<6> net278[6] vdd vss net291[6] / physpined_INVD2BWP7T30P140
+Xi46<5> net278[5] vdd vss net291[5] / physpined_INVD2BWP7T30P140
+Xi46<4> net278[4] vdd vss net291[4] / physpined_INVD2BWP7T30P140
+Xi46<3> net278[3] vdd vss net291[3] / physpined_INVD2BWP7T30P140
+Xi46<2> net278[2] vdd vss net291[2] / physpined_INVD2BWP7T30P140
+Xi46<1> net278[1] vdd vss net291[1] / physpined_INVD2BWP7T30P140
+Xi46<0> net278[0] vdd vss net291[0] / physpined_INVD2BWP7T30P140
+Xi48<17> net277[17] vdd vss net290[17] / physpined_INVD2BWP7T30P140
+Xi48<16> net277[16] vdd vss net290[16] / physpined_INVD2BWP7T30P140
+Xi48<15> net277[15] vdd vss net290[15] / physpined_INVD2BWP7T30P140
+Xi48<14> net277[14] vdd vss net290[14] / physpined_INVD2BWP7T30P140
+Xi48<13> net277[13] vdd vss net290[13] / physpined_INVD2BWP7T30P140
+Xi48<12> net277[12] vdd vss net290[12] / physpined_INVD2BWP7T30P140
+Xi48<11> net277[11] vdd vss net290[11] / physpined_INVD2BWP7T30P140
+Xi48<10> net277[10] vdd vss net290[10] / physpined_INVD2BWP7T30P140
+Xi48<9> net277[9] vdd vss net290[9] / physpined_INVD2BWP7T30P140
+Xi48<8> net277[8] vdd vss net290[8] / physpined_INVD2BWP7T30P140
+Xi48<7> net277[7] vdd vss net290[7] / physpined_INVD2BWP7T30P140
+Xi48<6> net277[6] vdd vss net290[6] / physpined_INVD2BWP7T30P140
+Xi48<5> net277[5] vdd vss net290[5] / physpined_INVD2BWP7T30P140
+Xi48<4> net277[4] vdd vss net290[4] / physpined_INVD2BWP7T30P140
+Xi48<3> net277[3] vdd vss net290[3] / physpined_INVD2BWP7T30P140
+Xi48<2> net277[2] vdd vss net290[2] / physpined_INVD2BWP7T30P140
+Xi48<1> net277[1] vdd vss net290[1] / physpined_INVD2BWP7T30P140
+Xi48<0> net277[0] vdd vss net290[0] / physpined_INVD2BWP7T30P140
+Xi1<17> net279[17] vdd vss net292[17] / physpined_INVD2BWP7T30P140
+Xi1<16> net279[16] vdd vss net292[16] / physpined_INVD2BWP7T30P140
+Xi1<15> net279[15] vdd vss net292[15] / physpined_INVD2BWP7T30P140
+Xi1<14> net279[14] vdd vss net292[14] / physpined_INVD2BWP7T30P140
+Xi1<13> net279[13] vdd vss net292[13] / physpined_INVD2BWP7T30P140
+Xi1<12> net279[12] vdd vss net292[12] / physpined_INVD2BWP7T30P140
+Xi1<11> net279[11] vdd vss net292[11] / physpined_INVD2BWP7T30P140
+Xi1<10> net279[10] vdd vss net292[10] / physpined_INVD2BWP7T30P140
+Xi1<9> net279[9] vdd vss net292[9] / physpined_INVD2BWP7T30P140
+Xi1<8> net279[8] vdd vss net292[8] / physpined_INVD2BWP7T30P140
+Xi1<7> net279[7] vdd vss net292[7] / physpined_INVD2BWP7T30P140
+Xi1<6> net279[6] vdd vss net292[6] / physpined_INVD2BWP7T30P140
+Xi1<5> net279[5] vdd vss net292[5] / physpined_INVD2BWP7T30P140
+Xi1<4> net279[4] vdd vss net292[4] / physpined_INVD2BWP7T30P140
+Xi1<3> net279[3] vdd vss net292[3] / physpined_INVD2BWP7T30P140
+Xi1<2> net279[2] vdd vss net292[2] / physpined_INVD2BWP7T30P140
+Xi1<1> net279[1] vdd vss net292[1] / physpined_INVD2BWP7T30P140
+Xi1<0> net279[0] vdd vss net292[0] / physpined_INVD2BWP7T30P140
+Xi240 ls_en_asic vdd vss net0289 / physpined_BUFFD4BWP7T30P140
+Xi241 net0289 vdd vss net0132 / physpined_BUFFD12BWP7T30P140
+Xi156 net0139 vdd vss ls_en_asic_buf3 / physpined_BUFFD16BWP7T30P140
+Xi154 net0132 vdd vss net0139 / physpined_BUFFD16BWP7T30P140
+Xi158 net0137 vdd vss ls_en_asic_buf7 / physpined_BUFFD16BWP7T30P140
+Xi157 net0132 vdd vss net0137 / physpined_BUFFD16BWP7T30P140
+Xi160 net0137 vdd vss ls_en_asic_buf5 / physpined_BUFFD16BWP7T30P140
+Xi159 net0137 vdd vss ls_en_asic_buf6 / physpined_BUFFD16BWP7T30P140
+Xi162 net0132 vdd vss net0141 / physpined_BUFFD16BWP7T30P140
+Xi161 net0137 vdd vss ls_en_asic_buf4 / physpined_BUFFD16BWP7T30P140
+Xi164 net0141 vdd vss ls_en_asic_buf8 / physpined_BUFFD16BWP7T30P140
+Xi163 net0141 vdd vss ls_en_asic_buf11 / physpined_BUFFD16BWP7T30P140
+Xi166 net0141 vdd vss ls_en_asic_buf10 / physpined_BUFFD16BWP7T30P140
+Xi165 net0141 vdd vss ls_en_asic_buf9 / physpined_BUFFD16BWP7T30P140
+Xi111 net0139 vdd vss ls_en_asic_buf1 / physpined_BUFFD16BWP7T30P140
+Xi227 net0139 vdd vss ls_en_asic_buf0 / physpined_BUFFD16BWP7T30P140
+Xi155 net0139 vdd vss ls_en_asic_buf2 / physpined_BUFFD16BWP7T30P140
+.ENDS
+

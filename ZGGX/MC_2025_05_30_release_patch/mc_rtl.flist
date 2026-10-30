@@ -1,0 +1,2 @@
+$AUX_DIR/phy/rtl/phy_group.vp
+-F $AUX_DIR/mc/rtl/filelist.f

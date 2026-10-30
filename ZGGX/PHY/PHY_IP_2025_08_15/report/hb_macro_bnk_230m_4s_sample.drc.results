@@ -1,0 +1,635 @@
+hb_macro_bnk_230m_4s_sample 1000
+IO_CONNECT_CORE_NET_VOLTAGE_IS_CORE:WARNING1
+1 1 10 Aug 15 14:42:18 2025                    
+IO_CONNECT_CORE_NET_VOLTAGE_IS_CORE:WARNING1 { @ USE_IO_VOLTAGE_ON_CORE_TO_IO_NET option is off in this DRC run.
+@ 1. It will use low voltage space rules to do DRC, as you do not assign the voltage marker & the net connects to IO MOS and core MOS simultaneousely
+@ 2. If the designer knows some nets use high volatage,
+@    please turn on USE_IO_VOLTAGE_ON_CORE_TO_IO_NET option to check high voltage space rules conservatively. 
+@ 3. If you turn on USE_IO_VOLTAGE_ON_CORE_TO_IO_NET option, you might find some high voltage space violations are actually false errors
+@    because these nets actually use low voltage. You can turn off the option.
+@ 4. It is strongly recommended to assign volatage marker layer on the nets connect to IO MOS and core MOS simultaneousely. 
+@ 5. This warning is just a reminder, not a gated item for tape-out.
+    COPY CHIPx 
+}
+p 1 4
+CN hb_macro_bnk_230m_4s_sample c 1 0 0 1 0 0 0
+605 0
+226995 0
+226995 378700
+605 378700
+WITH_SEALRING_OPTION:WARNING
+1 1 3 Aug 15 14:42:18 2025                     
+WITH_SEALRING_OPTION:WARNING {@ Please turn off WITH_SEALRING option if Seal-Ring is not added in chip layout. 
+    CHIPx NOT INTERACT SEALRING_ALL
+}
+p 1 4
+CN hb_macro_bnk_230m_4s_sample c 1 0 0 1 0 0 0
+605 0
+226995 0
+226995 378700
+605 378700
+DIODMY_L:WARNING
+1 1 4 Aug 15 14:42:18 2025                     
+DIODMY_L:WARNING { @ Each low leakage concern diode must be covered by DIODMY_L.
+	       @ If there's no low leakage diode concern cell in the chip, the violation can be ignored.
+  MERGE (CHIP NOT INTERACT (DIODMY_L INTERACT DIODMY))
+}
+p 1 4
+CN hb_macro_bnk_230m_4s_sample c 1 0 0 1 0 0 0
+605 0
+226995 0
+226995 378700
+605 378700
+OD.DN.3
+12 12 15 Aug 15 14:42:29 2025                  
+OD.DN.3 { @ Minimum {{OD OR DOD} OR SR_DOD} local density [window 20 um x 20 um, stepping 10 um] >= 20% 
+	EXC = NWDMY OR SEALRING_SIZE_1
+  N = ALL_OD NOT EXC
+  D = CHIP NOT EXC 
+  EXC_M = COPY EXC
+  A = CHIPx NOT EXC
+  B1 = EXC_M NOT WITH EDGE (EXT [EXC_M] < OD_DN_3_E*2 SQUARE )
+  B = CHIPx NOT (SIZE B1 BY OD_DN_3_E-0.001)
+  ERR_WIN = DENSITY A B ALL_OD CHIP N D < OD_DN_3 WINDOW OD_DN_3_W STEP OD_DN_3_S BACKUP INSIDE OF LAYER CHIPx 
+          [!AREA(B)+~(AREA(A)-OD_DN_3_E*OD_DN_3_E)*!!(AREA(A)-OD_DN_3_E*OD_DN_3_E)+AREA(N)/AREA(D)+!~(AREA(ALL_OD)/AREA(CHIP)-OD_DN_3)+!(AREA(ALL_OD)/AREA(CHIP)-OD_DN_3)]
+  F = PUSH (WITH WIDTH (ERR_WIN NOT EXC_M) >= OD_DN_3_E)
+  X = DENSITY A B F ALL_OD CHIP N D < OD_DN_3 WINDOW OD_DN_3_W STEP OD_DN_3_S BACKUP INSIDE OF LAYER CHIPx PRINT OD.DN.3.density RDB OD.DN.3.RDB.density
+          [!AREA(F)+!AREA(B)+~(AREA(A)-OD_DN_3_E*OD_DN_3_E)*!!(AREA(A)-OD_DN_3_E*OD_DN_3_E)+AREA(N)/AREA(D)+!~(AREA(ALL_OD)/AREA(CHIP)-OD_DN_3)+!(AREA(ALL_OD)/AREA(CHIP)-OD_DN_3)]
+  COPY X    
+}
+p 1 4
+CN hb_macro_bnk_230m_4s_sample c 1 0 0 1 0 0 0
+605 260000
+50605 260000
+50605 290000
+605 290000
+p 2 6
+605 310000
+50605 310000
+50605 340000
+10605 340000
+10605 330000
+605 330000
+p 3 8
+605 50000
+10605 50000
+10605 40000
+50605 40000
+50605 70000
+20605 70000
+20605 80000
+605 80000
+p 4 6
+605 90000
+20605 90000
+20605 100000
+50605 100000
+50605 130000
+605 130000
+p 5 6
+605 140000
+50605 140000
+50605 180000
+20605 180000
+20605 160000
+605 160000
+p 6 6
+605 220000
+20605 220000
+20605 200000
+50605 200000
+50605 240000
+605 240000
+p 7 8
+170605 100000
+190605 100000
+190605 90000
+226995 90000
+226995 130000
+180605 130000
+180605 120000
+170605 120000
+p 8 6
+170605 260000
+226995 260000
+226995 300000
+200605 300000
+200605 290000
+170605 290000
+p 9 8
+170605 150000
+190605 150000
+190605 140000
+226995 140000
+226995 160000
+210605 160000
+210605 180000
+170605 180000
+p 10 10
+170605 210000
+180605 210000
+180605 200000
+200605 200000
+200605 210000
+210605 210000
+210605 220000
+226995 220000
+226995 240000
+170605 240000
+p 11 8
+170605 40000
+220605 40000
+220605 50000
+226995 50000
+226995 80000
+190605 80000
+190605 70000
+170605 70000
+p 12 10
+170605 310000
+226995 310000
+226995 330000
+220605 330000
+220605 340000
+210605 340000
+210605 350000
+190605 350000
+190605 340000
+170605 340000
+PO.DN.3.1
+1 1 15 Aug 15 14:42:37 2025                    
+PO.DN.3.1 { @ Minimum {{{PO OR SR_DPO} OR DPO} NOT CPO} local density [window 10 um x 10 um, stepping 5 um] >= 0.1 
+  EXC = (((((SIZE INDDMY BY 2) OR MOMDMY) OR (BJTDMY OR LOGO)) OR RHOD) OR (DIODMY AND OD)) OR (SEALRING_SIZE_1 OR ICOVL)
+  N = ALL_POLY NOT EXC
+  D = CHIP NOT EXC 
+  EXC_M = SIZE EXC BY PO_DN_3_1_E/2 OVERUNDER TRUNCATE PO_DN_3_1_E/2
+  A = CHIPx NOT EXC
+  B1 = EXC_M NOT WITH EDGE (EXT [EXC_M] < PO_DN_3_1_E*2 SQUARE )
+  B = CHIPx NOT (SIZE B1 BY PO_DN_3_1_E-0.001)
+  ERR_WIN = DENSITY A B ALL_POLY CHIP N D < PO_DN_3_1 WINDOW PO_DN_3_1_W STEP PO_DN_3_1_S BACKUP INSIDE OF LAYER CHIPx 
+          [!AREA(B)+~(AREA(A)-PO_DN_3_1_E*PO_DN_3_1_E)*!!(AREA(A)-PO_DN_3_1_E*PO_DN_3_1_E)+AREA(N)/AREA(D)+!~(AREA(ALL_POLY)/AREA(CHIP)-PO_DN_3_1)+!(AREA(ALL_POLY)/AREA(CHIP)-PO_DN_3_1)]
+  F = PUSH (WITH WIDTH (ERR_WIN NOT EXC_M) >= PO_DN_3_1_E)
+  X = DENSITY A B F ALL_POLY CHIP N D < PO_DN_3_1 WINDOW PO_DN_3_1_W STEP PO_DN_3_1_S BACKUP INSIDE OF LAYER CHIPx PRINT PO.DN.3.1.density RDB PO.DN.3.1.RDB.density
+          [!AREA(F)+!AREA(B)+~(AREA(A)-PO_DN_3_1_E*PO_DN_3_1_E)*!!(AREA(A)-PO_DN_3_1_E*PO_DN_3_1_E)+AREA(N)/AREA(D)+!~(AREA(ALL_POLY)/AREA(CHIP)-PO_DN_3_1)+!(AREA(ALL_POLY)/AREA(CHIP)-PO_DN_3_1)]
+  COPY X      
+}
+p 1 4
+CN hb_macro_bnk_230m_4s_sample c 1 0 0 1 0 0 0
+605 150000
+10605 150000
+10605 160000
+605 160000
+MATCH.WARN.1
+1 1 3 Aug 15 14:42:38 2025                     
+MATCH.WARN.1 {@ Warning: MOSFET matching performance degradation at least by 3X may appear when violating PO.DN.16, PO.R.28 or MOS array matching rule (AN.R.80.2mg and AN.R.79.2mg). Note: CAD layer MATCHING (205;8), ANARRAY_H (255;20) or ANARRAY_M (255;21) are required to flag mismatch related rules checking in MOS matching pairs. In case of absence of MATCHING (205;8), ANARRAY_H (255;20) and ANARRAY_M (255;21) in MOS matching pairs, MOS array matching rule like PO.DN.16, PO.R.28, AN.R.80.2mg, AN.R.79.2mg or DFM will not be flagged. Customers can bypass this warning message if they ensure no circuits concerning MOS mismatch in the sign off flow of circuit design. DRC only flags this warning in chip level   
+  CHIPx NOT INTERACT MATCHING_ARRAY
+}
+p 1 4
+CN hb_macro_bnk_230m_4s_sample c 1 0 0 1 0 0 0
+605 0
+226995 0
+226995 378700
+605 378700
+PO.R.19
+30 30 4 Aug 15 14:42:40 2025                   
+PO.R.19 { @ Floating gate is prohibited if the effective source/drain are not connected together. Floating gate in the DRC is as follows: (1) GATE without Poly CO (2) GATE with Poly CO but not connected to MOS OD, STRAP or PAD. (3) It is not a floating gate if the GATE is connected to OD by butted CO in SRAM bit cell. The effective source/drain in DRC is as follows: (1)Source/drain is connected to different {MOSOD NOT PO}, STRAP, Gate, or PAD. This rule is only checked on the whole chip, not on the IP level   
+  (Float_GATE_check INTERACT NSDu > 1 BY NET) NOT INSIDE SRAM_WAIVE_N28
+  (Float_GATE_check INTERACT PSDu > 1 BY NET) NOT INSIDE SRAM_WAIVE_N28
+}
+p 1 4
+CN asic_io_p2_unit c -1 0 0 -1 102325 3325 272
+-7920 1145
+-7890 1145
+-7890 1285
+-7920 1285
+p 2 4
+CN BUFFD3BWP7T30P140 c 1 0 0 -1 103490 177205 28
+125 75
+155 75
+155 275
+125 275
+p 3 4
+CN array_unit_com c 1 0 0 1 105960 175740 7
+13475 1540
+13505 1540
+13505 1740
+13475 1740
+p 4 4
+13615 1540
+13645 1540
+13645 1740
+13615 1740
+p 5 4
+13895 1190
+13925 1190
+13925 1390
+13895 1390
+p 6 4
+14035 1190
+14065 1190
+14065 1390
+14035 1390
+p 7 4
+CN gradd_gcadd_wr_rd_bn_all c 1 0 0 1 83995 174920 1
+17190 1090
+17280 1090
+17280 2690
+17190 2690
+p 8 4
+17460 1090
+17550 1090
+17550 2690
+17460 2690
+p 9 4
+19620 2360
+19650 2360
+19650 2560
+19620 2560
+p 10 4
+19760 2360
+19790 2360
+19790 2560
+19760 2560
+p 11 4
+CN hb_macro_bnk_230m_4s_sample c 1 0 0 1 0 0 0
+108675 375410
+108705 375410
+108705 375610
+108675 375610
+p 12 4
+108815 375410
+108845 375410
+108845 375610
+108815 375610
+p 13 4
+108955 375410
+108985 375410
+108985 375610
+108955 375610
+p 14 4
+109655 376810
+109685 376810
+109685 377010
+109655 377010
+p 15 4
+109795 376810
+109825 376810
+109825 377010
+109795 377010
+p 16 4
+CN asic_io_p2_unit c -1 0 0 -1 102325 3325 272
+-7920 735
+-7890 735
+-7890 935
+-7920 935
+p 17 4
+CN BUFFD3BWP7T30P140 c 1 0 0 -1 103490 177205 28
+125 405
+155 405
+155 625
+125 625
+p 18 4
+CN array_unit_com c 1 0 0 1 105960 175740 7
+13475 1870
+13505 1870
+13505 2090
+13475 2090
+p 19 4
+13615 1870
+13645 1870
+13645 2090
+13615 2090
+p 20 4
+13895 840
+13925 840
+13925 1060
+13895 1060
+p 21 4
+14035 840
+14065 840
+14065 1060
+14035 1060
+p 22 4
+CN gradd_gcadd_wr_rd_bn_all c 1 0 0 1 83995 174920 1
+14740 1090
+14830 1090
+14830 2690
+14740 2690
+p 23 4
+15010 1090
+15100 1090
+15100 2690
+15010 2690
+p 24 4
+19620 2690
+19650 2690
+19650 2910
+19620 2910
+p 25 4
+19760 2690
+19790 2690
+19790 2910
+19760 2910
+p 26 4
+CN hb_macro_bnk_230m_4s_sample c 1 0 0 1 0 0 0
+108675 375740
+108705 375740
+108705 375960
+108675 375960
+p 27 4
+108815 375740
+108845 375740
+108845 375960
+108815 375960
+p 28 4
+108955 375740
+108985 375740
+108985 375960
+108955 375960
+p 29 4
+109655 377140
+109685 377140
+109685 377360
+109655 377360
+p 30 4
+109795 377140
+109825 377140
+109825 377360
+109795 377360
+SSD.DN.1
+1 1 4 Aug 15 14:42:49 2025                     
+SSD.DN.1 {@ Strained S/D {mask ID: 123} open ratio should be >= 6% and be as uniform as possible over chip DRC methodology: Minimum {{{{{PP AND NW} NOT {{{{{{{RH_OD OR RH_PO} OR VAR} OR SR_ESD} OR OD2} OR BJTDMY} OR DIODMY} OR {{NP AND NW} NOT SRM}}} OR {DOD AND PP}} AND {{OD OR DOD} OR SR_DOD}} NOT {{PO OR DPO} OR SR_DPO}} density across full chip >= 6%
+  SSD = ((((PPi AND NWi) NOT (((((((RHOD OR RHPO) OR VARi) OR SRESD) OR OD2i) OR BJTDMY) OR DIODMY) OR ((NPi AND NWi) NOT SRM))) OR (DOD AND PPi)) AND ((ODi OR DOD) OR SRDOD)) NOT ((POi OR DPO) OR SRDPO)
+  DENSITY SSD < SSD_DN_1 INSIDE OF LAYER CHIPx PRINT SSD.DN.1.density RDB SSD.DN.1.RDB.density
+}
+p 1 4
+CN hb_macro_bnk_230m_4s_sample c 1 0 0 1 0 0 0
+605 0
+226995 0
+226995 378700
+605 378700
+M8.DN.1
+1 1 13 Aug 15 14:43:41 2025                    
+M8.DN.1 { @ Minimum local density [window 125 um x 125 um, stepping 62.5 um] >= 0.1
+  N = M8x NOT M8_EXC_LOW
+  D = CHIP NOT M8_EXC_LOW 
+  EXC_M = COPY M8_EXC_LOW
+  A = CHIP_M8 NOT M8_EXC_LOW
+  B = CHIP_M8 NOT (SIZE EXC_M BY M8_DN_1_E/2-0.001)
+  ERR_WIN = DENSITY A B M8x CHIP N D < M8_DN_1 WINDOW M8_DN_1_W STEP M8_DN_1_S BACKUP INSIDE OF LAYER CHIP_M8 
+          [!AREA(B)+~(AREA(A)-M8_DN_1_E*M8_DN_1_E)*!!(AREA(A)-M8_DN_1_E*M8_DN_1_E)+AREA(N)/AREA(D)+!~(AREA(M8x)/AREA(CHIP)-M8_DN_1)+!(AREA(M8x)/AREA(CHIP)-M8_DN_1)]
+  F = PUSH (WITH WIDTH (ERR_WIN NOT EXC_M) >= M8_DN_1_E)
+  X = DENSITY A B F M8x CHIP N D < M8_DN_1 WINDOW M8_DN_1_W STEP M8_DN_1_S BACKUP INSIDE OF LAYER CHIP_M8 PRINT M8.DN.1.density RDB M8.DN.1.RDB.density
+          [!AREA(F)+!AREA(B)+~(AREA(A)-M8_DN_1_E*M8_DN_1_E)*!!(AREA(A)-M8_DN_1_E*M8_DN_1_E)+AREA(N)/AREA(D)+!~(AREA(M8x)/AREA(CHIP)-M8_DN_1)+!(AREA(M8x)/AREA(CHIP)-M8_DN_1)]
+  COPY X    
+}
+p 1 4
+CN hb_macro_bnk_230m_4s_sample c 1 0 0 1 0 0 0
+605 0
+226995 0
+226995 378700
+605 378700
+M9.DN.1
+1 1 13 Aug 15 14:43:41 2025                    
+M9.DN.1 { @ Minimum local density [window 125 um x 125 um, stepping 62.5 um] >= 0.1
+  N = M9x NOT M9_EXC_LOW
+  D = CHIP NOT M9_EXC_LOW 
+  EXC_M = COPY M9_EXC_LOW
+  A = CHIP_M9 NOT M9_EXC_LOW
+  B = CHIP_M9 NOT (SIZE EXC_M BY M9_DN_1_E/2-0.001)
+  ERR_WIN = DENSITY A B M9x CHIP N D < M9_DN_1 WINDOW M9_DN_1_W STEP M9_DN_1_S BACKUP INSIDE OF LAYER CHIP_M9 
+          [!AREA(B)+~(AREA(A)-M9_DN_1_E*M9_DN_1_E)*!!(AREA(A)-M9_DN_1_E*M9_DN_1_E)+AREA(N)/AREA(D)+!~(AREA(M9x)/AREA(CHIP)-M9_DN_1)+!(AREA(M9x)/AREA(CHIP)-M9_DN_1)]
+  F = PUSH (WITH WIDTH (ERR_WIN NOT EXC_M) >= M9_DN_1_E)
+  X = DENSITY A B F M9x CHIP N D < M9_DN_1 WINDOW M9_DN_1_W STEP M9_DN_1_S BACKUP INSIDE OF LAYER CHIP_M9 PRINT M9.DN.1.density RDB M9.DN.1.RDB.density
+          [!AREA(F)+!AREA(B)+~(AREA(A)-M9_DN_1_E*M9_DN_1_E)*!!(AREA(A)-M9_DN_1_E*M9_DN_1_E)+AREA(N)/AREA(D)+!~(AREA(M9x)/AREA(CHIP)-M9_DN_1)+!(AREA(M9x)/AREA(CHIP)-M9_DN_1)]
+  COPY X    
+}
+p 1 4
+CN hb_macro_bnk_230m_4s_sample c 1 0 0 1 0 0 0
+605 0
+226995 0
+226995 378700
+605 378700
+MOM.R.2
+1 1 3 Aug 15 14:43:41 2025                     
+MOM.R.2 { @ Each MOM cell must be covered by MOMDMY_n (n=155;1~10/20/21/100). DRC only flags no MOMDMY_n (n=155;1~10/20/21/100) in the chip. But if there is no MOM cell in your chip, the violation can be waived.
+  MERGE (CHIP NOT INTERACT MOMDMY_ALL)
+}
+p 1 4
+CN hb_macro_bnk_230m_4s_sample c 1 0 0 1 0 0 0
+605 0
+226995 0
+226995 378700
+605 378700
+AP.DN.1
+1 1 3 Aug 15 14:43:42 2025                     
+AP.DN.1 { @ Minimum AP density across full chip >= 10% 
+  DENSITY APi < AP_DN_1 INSIDE OF LAYER CHIP_AP PRINT AP.DN.1.density
+}
+p 1 4
+CN hb_macro_bnk_230m_4s_sample c 1 0 0 1 0 0 0
+605 0
+226995 0
+226995 378700
+605 378700
+DM8.R.1
+1 1 3 Aug 15 14:43:54 2025                     
+DM8.R.1 { @ DM8 is a must. The DM8 CAD layer (TSMC default, 38;41 for DM8) must be different from the M8 CAD layer.
+  MERGE (CHIP NOT INTERACT DUM8)
+}
+p 1 4
+CN hb_macro_bnk_230m_4s_sample c 1 0 0 1 0 0 0
+605 0
+226995 0
+226995 378700
+605 378700
+DM9.R.1
+1 1 3 Aug 15 14:43:54 2025                     
+DM9.R.1 { @ DM9 is a must. The DM9 CAD layer (TSMC default, 39;41 for DM9) must be different from the M9 CAD layer.
+  MERGE (CHIP NOT INTERACT DUM9)
+}
+p 1 4
+CN hb_macro_bnk_230m_4s_sample c 1 0 0 1 0 0 0
+605 0
+226995 0
+226995 378700
+605 378700
+DENSITY_RDBS
+0 0 46 Aug 15 14:44:04 2025
+OD.DN.3.RDB.density 112
+OD.DN.4.RDB.density 0
+OD.DN.5.RDB.density 0
+PO.A.3.RDB.density 0
+PO.DN.3.RDB.density 0
+PO.DN.3.1.RDB.density 1
+PO.DN.4.RDB.density 0
+PO.DN.4.1.RDB.density 0
+PO.DN.16.RDB.density 0
+PO.R.28:X.RDB.density 0
+PO.R.28:Y.RDB.density 0
+SR_DOD.DN.1.RDB.density 0
+SR_DPO.DN.1.RDB.density 0
+SSD.DN.1.RDB.density 1
+M1.DN.1.RDB.density 0
+M1.DN.2.RDB.density 0
+M2.DN.1.RDB.density 0
+M2.DN.2.RDB.density 0
+M3.DN.1.RDB.density 0
+M3.DN.2.RDB.density 0
+Mx.DN.4:M1_M2_M3.density 0
+Mx.DN.7:M1_M2_M3.density 0
+M4.DN.1.RDB.density 0
+M4.DN.2.RDB.density 0
+Mx.DN.4:M2_M3_M4.density 0
+Mx.DN.7:M2_M3_M4.density 0
+M5.DN.1.RDB.density 0
+M5.DN.2.RDB.density 0
+Mx.DN.4:M3_M4_M5.density 0
+Mx.DN.7:M3_M4_M5.density 0
+M6.DN.1.RDB.density 0
+M6.DN.2.RDB.density 0
+Mx.DN.4:M4_M5_M6.density 0
+Mx.DN.7:M4_M5_M6.density 0
+M7.DN.1.RDB.density 0
+M7.DN.2.RDB.density 0
+Mx.DN.4:M5_M6_M7.density 0
+Mx.DN.7:M5_M6_M7.density 0
+M8.DN.1.RDB.density 18
+M8.DN.2.RDB.density 0
+M9.DN.1.RDB.density 18
+M9.DN.2.RDB.density 0
+SRAM.WARN.1.rep 0
+SRAM.WARN.2.rep 0
+PO.DN.7.RDB.density 0
+PO.DN.8.RDB.density 0
+NET_AREA_RATIO_RDBS
+0 0 8 Aug 15 14:44:04 2025
+MOM.A.1.rep 0
+ESD.1g.hv_n.rep 0
+ESD.1g.hv_p.rep 0
+ESD.18g.NMOS.rep 0
+ESD.19g.PMOS.rep 0
+ESD.40g.rep 0
+ESD.40.1g.rep 0
+ESD.49g.rep 0
+DENSITY_PRINT_FILES
+0 0 114 Aug 15 14:44:04 2025
+OD.DN.1.density
+OD.DN.2.density
+OD.DN.3.density
+OD.DN.4.density
+OD.DN.5.density
+PO.A.3.density
+PO.DN.1.density
+PO.DN.2.density
+PO.DN.3.density
+PO.DN.3.1.density
+PO.DN.4.density
+PO.DN.4.1.density
+PO.DN.16.density
+PO.R.28:X.density
+PO.R.28:Y.density
+SR_DOD.DN.1.density
+SR_DPO.DN.1.density
+SSD.DN.1.density
+M1.DN.1.density
+M1.DN.2.density
+M1.DN.3.density
+M1.DN.6_A.density
+M1.DN.6_BC.density
+M2.DN.1.density
+M2.DN.2.density
+M2.DN.3.density
+M2.DN.6_A.density
+M2.DN.6_BC.density
+M3.DN.1.density
+M3.DN.2.density
+M3.DN.3.density
+M3.DN.6_A.density
+M3.DN.6_BC.density
+M4.DN.1.density
+M4.DN.2.density
+M4.DN.3.density
+M4.DN.6_A.density
+M4.DN.6_BC.density
+M5.DN.1.density
+M5.DN.2.density
+M5.DN.3.density
+M5.DN.6_A.density
+M5.DN.6_BC.density
+M6.DN.1.density
+M6.DN.2.density
+M6.DN.3.density
+M6.DN.6_A.density
+M6.DN.6_BC.density
+M7.DN.1.density
+M7.DN.2.density
+M7.DN.3.density
+M7.DN.6_A.density
+M7.DN.6_BC.density
+M8.DN.1.density
+M8.DN.2.density
+M8.DN.3.density
+M9.DN.1.density
+M9.DN.2.density
+M9.DN.3.density
+IND.DN.1.density
+IND.DN.2.M1.density
+IND.DN.2.M2.density
+IND.DN.2.M3.density
+IND.DN.2.M4.density
+IND.DN.2.M5.density
+IND.DN.2.M6.density
+IND.DN.2.M7.density
+IND.DN.3.M1.density
+IND.DN.3.M2.density
+IND.DN.3.M3.density
+IND.DN.3.M4.density
+IND.DN.3.M5.density
+IND.DN.3.M6.density
+IND.DN.3.M7.density
+IND.DN.3.M8.density
+IND.DN.3.M9.density
+IND.DN.7.density
+AP.W.5.rep
+AP.DN.1.density
+AP.DN.2.density
+DVIA1DM1.R.3.density
+DVIA1DM2.R.3.density
+DVIA2DM2.R.3.density
+DVIA2DM3.R.3.density
+DVIA3DM3.R.3.density
+DVIA3DM4.R.3.density
+DVIA4DM4.R.3.density
+DVIA4DM5.R.3.density
+DVIA5DM5.R.3.density
+DVIA5DM6.R.3.density
+DVIA6DM6.R.3.density
+DVIA6DM7.R.3.density
+PO.DN.7.density
+PO.DN.8.density
+DTCD.DN.1.NO_TCDDMY
+DTCD.DN.1.density
+BDTCD.DN.1.NO_TCDDMY
+BDTCD.DN.1.density
+BDTCD.DN.2.NO_TCDDMY2
+BDTCD.DN.2.M2.density
+BDTCD.DN.2.NO_TCDDMY3
+BDTCD.DN.2.M3.density
+BDTCD.DN.2.NO_TCDDMY4
+BDTCD.DN.2.M4.density
+BDTCD.DN.2.NO_TCDDMY5
+BDTCD.DN.2.M5.density
+BDTCD.DN.2.NO_TCDDMY6
+BDTCD.DN.2.M6.density
+BDTCD.DN.2.NO_TCDDMY7
+BDTCD.DN.2.M7.density
+ICOVL.R.17.density
+ICOVL.R.18.density
+ICOVL.R.19.density
+ICOVL.R.20.density
+DFM_RDBS
+0 0 3 Aug 15 14:44:04 2025
+MFU.R.1.rep
+AN.R.79.2mg.rep
+AN.R.80.2mg.rep
