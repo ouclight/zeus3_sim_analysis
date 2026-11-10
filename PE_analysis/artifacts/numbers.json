@@ -1,0 +1,17 @@
+{
+  "compute_flops_cycle": 16384,
+  "interface_bytes_cycle": 8192,
+  "credit_model_bytes_cycle": 5342.608695652174,
+  "ridge_interface": 2.0,
+  "ridge_credit": 3.0666666666666664,
+  "M1": {
+    "cycles": 871,
+    "bytes_cycle": 4815.50401836969,
+    "compute_util": 0.2939150401836969
+  },
+  "M4": {
+    "cycles": 1177,
+    "bytes_cycle": 3563.554800339847,
+    "compute_util": 0.8700084961767205
+  }
+}
